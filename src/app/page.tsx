@@ -7,10 +7,12 @@ import FAQ from "@/components/sections/FAQ";
 import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
 import IndustryWins from "@/components/sections/IndustryWins";
+import Newsletter from "@/components/sections/Newsletter";
 import ResourcesShowcase from "@/components/sections/ResourcesShowcase";
 import ServicesShowcase from "@/components/sections/ServicesShowcase";
 import TrustedBrands from "@/components/sections/TrustedBrands";
 import TestimonialsMarquee from "@/components/sections/TestimonialsMarquee";
+import TrustStrip from "@/components/sections/TrustStrip";
 import WhyUsVideo from "@/components/sections/WhyUsVideo";
 
 export default function HomePage() {
@@ -31,6 +33,8 @@ export default function HomePage() {
         <TestimonialsMarquee />
         <FAQ />
         <ContactCTA />
+        <TrustStrip />
+        <Newsletter />
       </main>
     </>
   );

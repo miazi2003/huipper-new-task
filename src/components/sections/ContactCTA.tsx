@@ -104,9 +104,7 @@ export default function ContactCTA() {
             radial-gradient(ellipse 36% 28% at 3% 100%, rgba(139, 97, 31, .65), transparent 72%),
             linear-gradient(115deg, #080908 0%, #090a09 48%, #0b0a09 100%);
           color: #f8f8f8;
-          box-shadow:
-            0 27px 34px rgba(13, 13, 11, .22),
-            0 18px 30px rgba(170, 151, 53, .16);
+          box-shadow: none;
         }
 
         .contact-offer {

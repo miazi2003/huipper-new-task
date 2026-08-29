@@ -118,9 +118,15 @@ export default function ClientStories() {
               </span>
 
               <div className="cs-card-copy">
-                <strong>{testimonial.company}</strong>
+                <div className="cs-company">
+                  <span className="cs-company-mark" aria-hidden="true">
+                    {Array.from({ length: 7 }, (_, dot) => <i key={dot} />)}
+                  </span>
+                  <strong>{testimonial.company}</strong>
+                </div>
                 <p>{testimonial.quote}</p>
-                <small>{testimonial.name}</small>
+                <h3>{testimonial.name}</h3>
+                <small>{testimonial.role}</small>
               </div>
             </article>
           </SwiperSlide>
@@ -181,9 +187,9 @@ export default function ClientStories() {
         .cs-card {
           position: relative;
           width: 100%;
-          aspect-ratio: 0.593;
+          aspect-ratio: 9 / 16;
           overflow: hidden;
-          border-radius: 24px 24px 0 0;
+          border-radius: 24px;
           cursor: pointer;
           isolation: isolate;
         }
@@ -208,8 +214,8 @@ export default function ClientStories() {
           right: 0;
           bottom: 0;
           left: 0;
-          height: 43%;
-          background: linear-gradient(to bottom, transparent, rgba(7, 7, 12, 0.9));
+          height: 52%;
+          background: linear-gradient(to bottom, transparent 0%, rgba(8, 8, 12, .68) 34%, rgba(7, 7, 11, .98) 100%);
           content: "";
           pointer-events: none;
         }
@@ -217,21 +223,17 @@ export default function ClientStories() {
         .cs-play {
           position: absolute;
           z-index: 3;
-          top: 53%;
+          top: 50%;
           left: 50%;
           display: grid;
-          width: 62px;
-          height: 62px;
+          width: 38px;
+          height: 46px;
           place-items: center;
-          border: 1px solid rgba(255, 255, 255, 0.16);
-          border-radius: 50%;
-          background: rgba(20, 20, 20, 0.28);
-          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+          border: 0;
+          background: transparent;
           opacity: 1;
           transform: translate(-50%, -50%);
           transition: opacity 180ms ease;
-          -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
         }
 
         .cs-play[data-hidden="true"] { opacity: 0; }
@@ -239,44 +241,87 @@ export default function ClientStories() {
         .cs-play i {
           width: 0;
           height: 0;
-          margin-left: 4px;
+          margin-left: 3px;
           border-top: 14px solid transparent;
           border-bottom: 14px solid transparent;
-          border-left: 22px solid #fff;
+          border-left: 23px solid #fff;
+          filter: drop-shadow(0 2px 5px rgba(0,0,0,.24));
         }
 
         .cs-card-copy {
           position: absolute;
           z-index: 2;
-          right: 32px;
-          bottom: 28px;
-          left: 32px;
+          right: 31px;
+          bottom: 26px;
+          left: 31px;
           color: #fff;
         }
 
-        .cs-card-copy strong {
-          display: block;
-          margin-bottom: 21px;
-          font-size: 19px;
-          line-height: 1;
+        .cs-company {
+          display: flex;
+          margin-bottom: 22px;
+          align-items: center;
+          gap: 10px;
         }
 
-        .cs-card-copy p {
+        .cs-company > strong {
+          display: block;
+          max-width: 165px;
+          font-size: 16px;
+          line-height: 1.08;
+        }
+
+        .cs-company-mark {
+          position: relative;
+          display: block;
+          width: 24px;
+          height: 29px;
+          flex: none;
+        }
+
+        .cs-company-mark i {
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #fff;
+        }
+
+        .cs-company-mark i:nth-child(1) { top: 0; left: 9px; }
+        .cs-company-mark i:nth-child(2) { top: 6px; left: 0; }
+        .cs-company-mark i:nth-child(3) { top: 6px; right: 0; }
+        .cs-company-mark i:nth-child(4) { top: 12px; left: 9px; }
+        .cs-company-mark i:nth-child(5) { top: 18px; left: 0; }
+        .cs-company-mark i:nth-child(6) { top: 18px; right: 0; }
+        .cs-company-mark i:nth-child(7) { top: 24px; left: 9px; }
+
+        .cs-card-copy > p {
           display: -webkit-box;
           margin: 0;
           overflow: hidden;
-          color: rgba(255, 255, 255, 0.68);
-          font-size: 16px;
+          color: #fff;
+          font-size: 18px;
+          font-weight: 600;
           line-height: 1.55;
+          letter-spacing: -.2px;
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
         }
 
+        .cs-card-copy h3 {
+          margin: 17px 0 5px;
+          color: #fff;
+          font-size: 20px;
+          font-weight: 700;
+          line-height: 1.2;
+          letter-spacing: -.25px;
+        }
+
         .cs-card-copy small {
           display: block;
-          margin-top: 18px;
-          color: rgba(255, 255, 255, 0.62);
-          font-size: 14px;
+          color: rgba(255, 255, 255, .76);
+          font-size: 16px;
+          line-height: 1.3;
         }
 
         @media (max-width: 900px) {
@@ -290,7 +335,7 @@ export default function ClientStories() {
         @media (max-width: 560px) {
           .cs-slide { width: 82vw; }
           .cs-heading h2 { font-size: 38px; }
-          .cs-card { border-radius: 18px 18px 0 0; }
+          .cs-card { border-radius: 18px; }
           .cs-card-copy { right: 22px; bottom: 22px; left: 22px; }
         }
       `}</style>

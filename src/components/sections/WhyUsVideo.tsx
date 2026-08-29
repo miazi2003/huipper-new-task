@@ -3,29 +3,18 @@
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
-const videoSrc = "/videos/why-us/showcase.mp4";
+const videoSrc = "https://designmonks.b-cdn.net/DM%20Others/DM%20Showreel%202026.mp4";
 
 function WatchVideoControl({ onClick }: { onClick: () => void }) {
   return (
     <button className="why-us-watch" type="button" onClick={onClick} aria-label="Play or pause showcase video">
-      <svg className="why-us-watch-ring" viewBox="0 0 120 120" aria-hidden="true">
-        <defs>
-          <path
-            id="why-us-watch-path"
-            d="M 60,60 m -42,0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0"
-          />
-        </defs>
-        <text>
-          <textPath href="#why-us-watch-path" startOffset="0%">
-            WATCH VIDEO · WATCH VIDEO ·
-          </textPath>
-        </text>
-      </svg>
-      <span className="why-us-play" aria-hidden="true">
-        <svg viewBox="0 0 28 28">
-          <path d="M8.2 6.9c-.8-1.5.8-3.2 2.3-2.4l10.8 6.2c2.5 1.4 2.5 5 0 6.4l-10.8 6.3c-1.5.8-3.1-.9-2.3-2.4 2.3-4.4 2.3-9.7 0-14.1Z" />
-        </svg>
-      </span>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="https://cdn.prod.website-files.com/672a72b52eb5f37692d645a9/67ae30449566892a169fa179_Video%20Play%5D%20(2).svg"
+        alt=""
+        width="150"
+        height="150"
+      />
     </button>
   );
 }
@@ -212,59 +201,34 @@ export default function WhyUsVideo() {
           z-index: 3;
           top: 50%;
           left: 50%;
-          width: 120px;
-          height: 120px;
+          width: 150px;
+          height: 150px;
           padding: 0;
           border: 0;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.94);
-          color: #171717;
-          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.13);
+          background: transparent;
+          box-shadow: none;
           cursor: pointer;
+          outline: none;
           transform: translate(-50%, -50%);
+          -webkit-appearance: none;
+          appearance: none;
         }
 
-        .why-us-watch-ring {
-          position: absolute;
-          inset: 0;
+        .why-us-watch:focus,
+        .why-us-watch:focus-visible { outline: none; }
+
+        .why-us-watch img {
           width: 100%;
           height: 100%;
-          overflow: visible;
-          animation: why-us-ring-spin 11s linear infinite;
+          object-fit: contain;
+          animation: why-us-video-icon-spin 11s linear infinite;
+          transition: filter 180ms ease;
         }
 
-        .why-us-watch-ring text {
-          fill: currentColor;
-          font-family: Arial, Helvetica, sans-serif;
-          font-size: 9.5px;
-          font-weight: 600;
-          letter-spacing: 2.15px;
-        }
+        .why-us-watch:hover img { filter: brightness(1.06); }
 
-        .why-us-play {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          display: grid;
-          width: 54px;
-          height: 54px;
-          place-items: center;
-          border-radius: 50%;
-          background: #fff;
-          box-shadow: 0 4px 16px rgba(85, 19, 190, 0.22);
-          transform: translate(-50%, -50%);
-          transition: transform 180ms ease, filter 180ms ease;
-        }
-
-        .why-us-play svg { width: 30px; height: 30px; }
-        .why-us-play path { fill: #721cff; }
-
-        .why-us-watch:hover .why-us-play {
-          filter: brightness(1.08);
-          transform: translate(-50%, -50%) scale(1.06);
-        }
-
-        @keyframes why-us-ring-spin {
+        @keyframes why-us-video-icon-spin {
           to { transform: rotate(360deg); }
         }
 
@@ -283,14 +247,7 @@ export default function WhyUsVideo() {
           .why-us-copy { max-width: 540px; margin-top: 17px; font-size: 15px; }
           .why-us-copy br { display: none; }
           .why-us-showcase { width: 93vw; margin-top: 62px; border-radius: 12px 12px 0 0; }
-          .why-us-watch { width: 92px; height: 92px; }
-          .why-us-watch-ring text { font-size: 9.2px; letter-spacing: 1.7px; }
-          .why-us-play { width: 42px; height: 42px; }
-          .why-us-play svg { width: 24px; height: 24px; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .why-us-watch-ring { animation-duration: 30s; }
+          .why-us-watch { width: 110px; height: 110px; }
         }
       `}</style>
     </section>

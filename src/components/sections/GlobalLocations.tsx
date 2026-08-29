@@ -37,6 +37,24 @@ export default function GlobalLocations() {
           background: #020711;
         }
 
+        .locations-section::after {
+          position: absolute;
+          z-index: 1;
+          right: 0;
+          bottom: -1px;
+          left: 0;
+          height: 180px;
+          pointer-events: none;
+          background: linear-gradient(
+            to bottom,
+            rgba(10, 10, 10, 0) 0%,
+            rgba(10, 10, 10, .22) 28%,
+            rgba(10, 10, 10, .7) 68%,
+            #0a0a0a 100%
+          );
+          content: "";
+        }
+
         .locations-video {
           position: absolute;
           inset: 0;

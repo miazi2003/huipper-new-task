@@ -164,7 +164,7 @@ export default function TrustedBrands() {
             height: 420px;
             margin-top: -22px;
             padding-top: 68px;
-            border-radius: 22px 22px 0 0;
+            border-radius: 32px 32px 0 0;
           }
 
           .tb-section h2 {

@@ -1,6 +1,7 @@
 export type VideoTestimonial = {
   id: string;
   name: string;
+  role: string;
   company: string;
   logo: string;
   poster: string;
@@ -13,6 +14,7 @@ export const videoTestimonials: VideoTestimonial[] = [
   {
     id: "carbobon",
     name: "Tasfia",
+    role: "Product Consultant @ CarboBon",
     company: "CarboBon",
     logo: "",
     poster: "",
@@ -23,6 +25,7 @@ export const videoTestimonials: VideoTestimonial[] = [
   {
     id: "relaxy",
     name: "Tahmina Rahman",
+    role: "Founder @ Relaxy",
     company: "Relaxy",
     logo: "",
     poster: "",
@@ -33,6 +36,7 @@ export const videoTestimonials: VideoTestimonial[] = [
   {
     id: "klasio",
     name: "Mahmudul Hasan",
+    role: "Founder @ klasio",
     company: "klasio",
     logo: "",
     poster: "",
@@ -42,7 +46,8 @@ export const videoTestimonials: VideoTestimonial[] = [
   },
   {
     id: "ontik",
-    name: "Moshiur Rahman Redif",
+    name: "Moshiur Rahman Radif",
+    role: "COO @ Ontik Technologies",
     company: "Ontik Technology",
     logo: "",
     poster: "",
@@ -53,6 +58,7 @@ export const videoTestimonials: VideoTestimonial[] = [
   {
     id: "medease",
     name: "Arvin",
+    role: "Founder @ MEDEASE",
     company: "MEDEASE",
     logo: "",
     poster: "",

@@ -10,6 +10,8 @@
   --font-display: Arial, Helvetica, sans-serif;
   --page-gutter: clamp(1rem, 3.35vw, 3rem);
   --container-max: 90rem;
+  --section-padding-block: 6.25rem;
+  --section-padding-inline: 5.75rem;
 }
 
 @theme inline {
@@ -41,6 +43,42 @@ body {
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+main > section {
+  padding-block: var(--section-padding-block) !important;
+  padding-inline: var(--section-padding-inline) !important;
+}
+
+main > .dm-hero {
+  padding: 2.5rem 0 0 !important;
+}
+
+main > .why-us-section {
+  padding-right: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+}
+
+main > .trust-strip-section {
+  padding-top: 0 !important;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --section-padding-inline: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --section-padding-block: 4rem;
+    --section-padding-inline: 1rem;
+  }
+
+  main > .dm-hero {
+    padding-top: 1.5rem !important;
+  }
 }
 
 img,

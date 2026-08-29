@@ -32,7 +32,7 @@ export default function TrustStrip() {
         .trust-strip-section {
           position: relative;
           z-index: 2;
-          margin-top: -94px;
+          margin-top: -85px;
           padding: 0 24px 96px;
           background: #fdfdfd;
         }
@@ -128,7 +128,7 @@ export default function TrustStrip() {
         }
 
         @media (max-width: 600px) {
-          .trust-strip-section { margin-top: -62px; padding: 0 12px 72px; }
+          .trust-strip-section { margin-top: -49px; padding: 0 12px 72px; }
           .trust-strip { min-height: 84px; height: auto; padding: 10px 14px; gap: 10px; border-radius: 44px; }
           .trust-people span, .trust-people strong { width: 34px; height: 34px; }
           .trust-people span + span { margin-left: -8px; }

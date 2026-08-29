@@ -1,3 +1,4 @@
+import ClientStories from "@/components/sections/ClientStories";
 import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
 import IndustryWins from "@/components/sections/IndustryWins";
@@ -11,6 +12,7 @@ export default function HomePage() {
         <Hero />
         <TrustedBrands />
         <IndustryWins />
+        <ClientStories />
       </main>
     </>
   );

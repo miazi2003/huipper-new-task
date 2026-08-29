@@ -4,6 +4,8 @@ import ClientStories from "@/components/sections/ClientStories";
 import Comparison from "@/components/sections/Comparison";
 import ContactCTA from "@/components/sections/ContactCTA";
 import FAQ from "@/components/sections/FAQ";
+import Footer from "@/components/sections/Footer";
+import FooterBrandVisual from "@/components/sections/FooterBrandVisual";
 import GlobalLocations from "@/components/sections/GlobalLocations";
 import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
@@ -38,6 +40,8 @@ export default function HomePage() {
         <Newsletter />
         <GlobalLocations />
       </main>
+      <Footer />
+      <FooterBrandVisual />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import AIPoweredDesign from "@/components/sections/AIPoweredDesign";
 import Benefits from "@/components/sections/Benefits";
 import ClientStories from "@/components/sections/ClientStories";
+import Comparison from "@/components/sections/Comparison";
 import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
 import IndustryWins from "@/components/sections/IndustryWins";
@@ -23,6 +24,7 @@ export default function HomePage() {
         <ServicesShowcase />
         <Benefits />
         <ResourcesShowcase />
+        <Comparison />
       </main>
     </>
   );

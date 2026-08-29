@@ -43,9 +43,10 @@ export default function IndustryWins() {
             start: "top 14%",
             end: () => `+=${Math.max(window.innerHeight * 3.75, 3000)}`,
             pin: true,
+            pinType: "fixed",
             pinSpacing: true,
             scrub: 0.65,
-            anticipatePin: 1,
+            anticipatePin: 0,
             invalidateOnRefresh: true,
           },
         });
@@ -177,6 +178,9 @@ export default function IndustryWins() {
           width: min(1254px, 100%);
           height: 432px;
           margin: 0 auto;
+          backface-visibility: hidden;
+          transform: translateZ(0);
+          isolation: isolate;
         }
 
         .iw-card {

@@ -137,8 +137,8 @@ export default function Hero() {
           --dm-marquee-gap: 20px;
           --dm-marquee-half-gap: 10px;
           position: relative;
-          height: 100vh;
-          min-height: 1060px;
+          height: calc(100vh + 28px);
+          min-height: 1088px;
           overflow: hidden;
           color: #fff;
         }

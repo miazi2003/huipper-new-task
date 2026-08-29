@@ -4,6 +4,7 @@ import ClientStories from "@/components/sections/ClientStories";
 import Comparison from "@/components/sections/Comparison";
 import ContactCTA from "@/components/sections/ContactCTA";
 import FAQ from "@/components/sections/FAQ";
+import GlobalLocations from "@/components/sections/GlobalLocations";
 import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
 import IndustryWins from "@/components/sections/IndustryWins";
@@ -35,6 +36,7 @@ export default function HomePage() {
         <ContactCTA />
         <TrustStrip />
         <Newsletter />
+        <GlobalLocations />
       </main>
     </>
   );

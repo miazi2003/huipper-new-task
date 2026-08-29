@@ -1,4 +1,5 @@
 import AIPoweredDesign from "@/components/sections/AIPoweredDesign";
+import Benefits from "@/components/sections/Benefits";
 import ClientStories from "@/components/sections/ClientStories";
 import Header from "@/components/sections/Header";
 import Hero from "@/components/sections/Hero";
@@ -19,6 +20,7 @@ export default function HomePage() {
         <AIPoweredDesign />
         <WhyUsVideo />
         <ServicesShowcase />
+        <Benefits />
       </main>
     </>
   );

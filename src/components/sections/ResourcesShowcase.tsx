@@ -63,6 +63,8 @@ export default function ResourcesShowcase() {
         .resources-section {
           width: 100%;
           padding: 103px 0 107px;
+          padding-right: 0 !important;
+          padding-left: 0 !important;
           overflow: hidden;
           background: #f1eaff;
           color: #101010;
@@ -110,7 +112,11 @@ export default function ResourcesShowcase() {
         .resources-track-rtl { animation: resources-text-rtl 20s linear infinite; }
         .resources-track-ltr { animation: resources-text-ltr 22s linear infinite; }
 
-        .resources-project-row { height: 395px; margin: 68px 0 67px; }
+        .resources-project-row {
+          width: auto;
+          height: 395px;
+          margin: 68px 0 67px;
+        }
         .resources-project-track { animation: resources-project-rtl 110s linear infinite; }
 
         .resources-project-set {

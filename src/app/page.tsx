@@ -8,6 +8,7 @@ import IndustryWins from "@/components/sections/IndustryWins";
 import ResourcesShowcase from "@/components/sections/ResourcesShowcase";
 import ServicesShowcase from "@/components/sections/ServicesShowcase";
 import TrustedBrands from "@/components/sections/TrustedBrands";
+import TestimonialsMarquee from "@/components/sections/TestimonialsMarquee";
 import WhyUsVideo from "@/components/sections/WhyUsVideo";
 
 export default function HomePage() {
@@ -25,6 +26,7 @@ export default function HomePage() {
         <Benefits />
         <ResourcesShowcase />
         <Comparison />
+        <TestimonialsMarquee />
       </main>
     </>
   );

@@ -60,8 +60,8 @@ export default function AIPoweredDesign() {
     if (!section) return;
 
     if (!("IntersectionObserver" in window)) {
-      const frame = window.requestAnimationFrame(() => setIsVisible(true));
-      return () => window.cancelAnimationFrame(frame);
+      const frame = requestAnimationFrame(() => setIsVisible(true));
+      return () => cancelAnimationFrame(frame);
     }
 
     const observer = new IntersectionObserver(

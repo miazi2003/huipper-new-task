@@ -35,15 +35,33 @@ function ArrowIcon() {
 function PlatformIcons() {
   return (
     <span className="dm-platforms" aria-label="Figma, Webflow and Framer">
-      <span className="dm-platform dm-figma" aria-hidden="true">
-        <i />
-        <i />
-        <i />
-        <i />
-        <i />
+      <span className="dm-platform" aria-hidden="true">
+        <Image
+          className="dm-platform-figma"
+          src="/images/hero/platforms/figma.png"
+          alt=""
+          width={28}
+          height={28}
+        />
       </span>
-      <span className="dm-platform dm-webflow" aria-hidden="true">W</span>
-      <span className="dm-platform dm-framer" aria-hidden="true">F</span>
+      <span className="dm-platform" aria-hidden="true">
+        <Image
+          className="dm-platform-webflow"
+          src="/images/hero/platforms/webflow.png"
+          alt=""
+          width={31}
+          height={31}
+        />
+      </span>
+      <span className="dm-platform" aria-hidden="true">
+        <Image
+          className="dm-platform-framer"
+          src="/images/hero/platforms/framer.png"
+          alt=""
+          width={29}
+          height={29}
+        />
+      </span>
     </span>
   );
 }
@@ -250,32 +268,23 @@ export default function Hero() {
           display: inline-grid;
           width: 55px;
           height: 55px;
-          margin-left: -5px;
+          margin-left: -10px;
           place-items: center;
           border: 1px solid #212121;
           border-radius: 50%;
           background: #f7f7f3;
-          color: #242424;
-          font-size: 23px;
-          font-style: normal;
-          font-weight: 900;
-          letter-spacing: -2px;
+          overflow: hidden;
         }
 
-        .dm-figma {
-          grid-template: repeat(3, 8px) / repeat(2, 8px);
-          gap: 0;
+        .dm-platform:first-child {
+          margin-left: 0;
         }
 
-        .dm-figma i { width: 8px; height: 8px; }
-        .dm-figma i:nth-child(1) { border-radius: 4px 0 0; background: #f24e1e; }
-        .dm-figma i:nth-child(2) { border-radius: 0 4px 0 0; background: #ff7262; }
-        .dm-figma i:nth-child(3) { border-radius: 4px 0 0 4px; background: #a259ff; }
-        .dm-figma i:nth-child(4) { border-radius: 50%; background: #1abcfe; }
-        .dm-figma i:nth-child(5) { border-radius: 0 0 4px 4px; background: #0acf83; }
-
-        .dm-webflow { color: #146ef5; font-family: Arial, sans-serif; font-style: italic; }
-        .dm-framer { color: #2b2b2b; font-family: Arial, sans-serif; }
+        .dm-platform img {
+          display: block;
+          height: auto;
+          object-fit: contain;
+        }
 
         .dm-country-pill {
           width: 440px;
@@ -408,7 +417,10 @@ export default function Hero() {
           }
 
           .dm-hero h1 { font-size: clamp(35px, 10vw, 48px); line-height: 1.13; letter-spacing: -1.7px; }
-          .dm-platform { width: 33px; height: 33px; }
+          .dm-platform { width: 33px; height: 33px; margin-left: -6px; }
+          .dm-platform-figma { width: 17px; }
+          .dm-platform-webflow { width: 19px; }
+          .dm-platform-framer { width: 18px; }
           .dm-platforms { top: -2px; vertical-align: middle; }
 
           .dm-country-pill {

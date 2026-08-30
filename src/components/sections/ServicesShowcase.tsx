@@ -7,10 +7,10 @@ import { type CSSProperties, useCallback, useEffect, useRef, useState } from "re
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { servicesShowcase, type ServiceShowcase } from "@/data/servicesShowcase";
 
-function ServiceDetails({ service, mobile = false }: { service: ServiceShowcase; mobile?: boolean }) {
+function ServiceDetails({ service }: { service: ServiceShowcase }) {
   const items = service.description.split(", ");
   return (
-    <div className={mobile ? "services-mobile-details" : "services-active-details"}>
+    <div className="services-active-details">
       <h3>
         {service.titlePrefix} <em>{service.titleItalic}</em>
       </h3>
@@ -74,8 +74,11 @@ export default function ServicesShowcase() {
         if (!group) return;
         ScrollTrigger.create({
           trigger: group,
-          start: "top 52%",
-          end: "bottom 52%",
+          start: () => (window.innerWidth <= 760 ? "top 38%" : "top 52%"),
+          end: () => (window.innerWidth <= 760 ? "bottom 38%" : "bottom 52%"),
+          onToggle: (self) => {
+            if (self.isActive) activateService(index);
+          },
           onEnter: () => activateService(index),
           onEnterBack: () => activateService(index),
         });
@@ -84,9 +87,11 @@ export default function ServicesShowcase() {
 
     const refresh = () => ScrollTrigger.refresh();
     window.addEventListener("load", refresh, { once: true });
+    window.addEventListener("resize", refresh, { passive: true });
 
     return () => {
       window.removeEventListener("load", refresh);
+      window.removeEventListener("resize", refresh);
       if (details) gsap.killTweensOf(details);
       context.revert();
     };
@@ -117,7 +122,6 @@ export default function ServicesShowcase() {
                 key={service.id}
                 ref={(node) => { groupRefs.current[serviceIndex] = node; }}
               >
-                <ServiceDetails service={service} mobile />
                 <div className="services-projects">
                   {service.projects.map((project) => (
                     <article
@@ -130,8 +134,9 @@ export default function ServicesShowcase() {
                         alt={project.alt}
                         fill
                         unoptimized
-                        sizes="(max-width: 760px) 90vw, (max-width: 1100px) 34vw, 360px"
-                        onError={(event) => { event.currentTarget.style.opacity = "0"; }}
+                        sizes="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 420px"
+                        priority={serviceIndex === 0}
+                        style={{ objectFit: "cover" }}
                       />
                       <div className="services-card-overlay">
                         <span className="services-card-badge">{project.alt}</span>
@@ -151,7 +156,7 @@ export default function ServicesShowcase() {
           z-index: 2;
           margin: -48px 0 16px;
           padding: 98px 0 140px;
-          overflow: clip;
+          overflow: visible;
           border-radius: 32px;
           background: #080808;
           color: #f7f7f7;
@@ -186,8 +191,7 @@ export default function ServicesShowcase() {
         }
 
         .services-header h2 em,
-        .services-active-details h3 em,
-        .services-mobile-details h3 em {
+        .services-active-details h3 em {
           font-family: Georgia, "Times New Roman", serif;
           font-weight: 700;
         }
@@ -206,8 +210,7 @@ export default function ServicesShowcase() {
           min-height: 230px;
         }
 
-        .services-active-details h3,
-        .services-mobile-details h3 {
+        .services-active-details h3 {
           margin: 0;
           font-size: clamp(31px, 2.35vw, 38px);
           line-height: 1.12;
@@ -222,8 +225,7 @@ export default function ServicesShowcase() {
           background: #6845b8;
         }
 
-        .services-active-details p,
-        .services-mobile-details p {
+        .services-active-details p {
           max-width: 380px;
           margin: 0;
           color: #d1d5db;
@@ -240,7 +242,6 @@ export default function ServicesShowcase() {
           font-weight: 700;
           color: #ffffff;
           letter-spacing: -0.2px;
-          transition: color 0.2s ease;
         }
 
         .service-bullet {
@@ -293,8 +294,6 @@ export default function ServicesShowcase() {
         .services-cta-btn:hover i {
           transform: translateX(2px);
         }
-
-        .services-mobile-details { display: none; }
 
         .services-gallery { min-width: 0; }
 
@@ -389,22 +388,133 @@ export default function ServicesShowcase() {
         }
 
         @media (max-width: 760px) {
-          .services-section { margin: -36px 0 12px; padding: 68px 0 82px; border-radius: 24px; }
-          .services-shell { width: calc(100% - 32px); }
-          .services-header > p { min-height: 31px; margin-bottom: 18px; font-size: 13px; }
-          .services-header h2 { font-size: clamp(34px, 10.4vw, 45px); line-height: 1.08; letter-spacing: -1.5px; }
-          .services-layout { display: block; margin-top: 70px; }
-          .services-info { display: none; }
-          .services-mobile-details { display: block; margin-bottom: 34px; }
-          .services-mobile-details h3 { font-size: 30px; }
-          .services-mobile-details p { font-size: 15px; }
-          .services-group { min-height: 0; margin-bottom: 64px; }
-          .services-group:last-child { margin-bottom: 0; }
-          .services-projects { grid-template-columns: 1fr; gap: 18px; }
-          .services-card { aspect-ratio: 0.78; border-radius: 16px; }
-          .services-card-right { margin-top: 0; }
-          .services-card-overlay { opacity: 1; padding: 14px; background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.75) 100%); }
-          .services-card-badge { font-size: 12px; padding: 4px 10px; transform: translateY(0); }
+          .services-section {
+            margin: -28px 0 12px;
+            padding: 44px 0 64px;
+            border-radius: 0 0 24px 24px;
+          }
+
+          .services-shell { width: calc(100% - 24px); }
+
+          .services-header { margin-bottom: 12px; }
+
+          .services-header h2 {
+            font-size: clamp(26px, 8vw, 34px);
+            line-height: 1.12;
+            letter-spacing: -1px;
+          }
+
+          .services-layout {
+            display: flex;
+            flex-direction: column;
+            margin-top: 14px;
+          }
+
+          .services-info {
+            display: block;
+            position: sticky;
+            top: 10px;
+            z-index: 30;
+            min-height: auto;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            border-radius: 16px;
+            background: rgba(10, 10, 14, 0.95);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 24px rgba(117, 83, 200, 0.2);
+          }
+
+          .services-active-details h3 {
+            font-size: 19px;
+            letter-spacing: -0.5px;
+          }
+
+          .services-divider {
+            margin: 6px 0;
+            background: rgba(104, 69, 184, 0.6);
+          }
+
+          .services-active-details p {
+            font-size: 12px;
+            line-height: 1.4;
+          }
+
+          .service-bold-text {
+            font-size: 12px;
+          }
+
+          .services-cta-btn {
+            margin-top: 10px;
+            min-width: 124px;
+            height: 34px;
+            font-size: 11px;
+            padding: 0 4px 0 12px;
+            gap: 6px;
+          }
+
+          .services-cta-btn i {
+            width: 26px;
+            height: 26px;
+          }
+
+          .services-cta-btn i svg {
+            width: 12px;
+            height: 12px;
+          }
+
+          .services-gallery {
+            width: 100%;
+            min-width: 0;
+            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+          }
+
+          .services-group {
+            width: 100%;
+            min-height: auto;
+            margin-bottom: 0;
+            padding-bottom: 6px;
+          }
+
+          .services-projects {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            width: 100%;
+          }
+
+          .services-card {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            min-height: 0;
+            aspect-ratio: 4 / 5;
+            border-radius: 18px;
+            overflow: hidden;
+            display: block;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+          }
+
+          .services-card-right {
+            margin-top: 0;
+          }
+
+          .services-card-overlay {
+            opacity: 1;
+            padding: 14px;
+            background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.8) 100%);
+          }
+
+          .services-card-badge {
+            font-size: 11px;
+            padding: 4px 10px;
+            transform: translateY(0);
+          }
         }
       `}</style>
     </section>

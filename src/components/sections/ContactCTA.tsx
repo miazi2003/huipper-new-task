@@ -22,13 +22,13 @@ export default function ContactCTA() {
           </ul>
 
           <div className="contact-profile">
-            <div className="contact-portrait" role="img" aria-label="Portrait placeholder for Abdullah Al Noman">
+            <div className="contact-portrait" role="img" aria-label="Portrait placeholder">
               <i aria-hidden="true"><UserRound /></i>
             </div>
-            <h3>Abdullah Al Noman</h3>
+            <h3>********</h3>
             <p>COO &amp; Co-founder</p>
-            <a className="contact-phone" href="tel:+17165036335"><MessageCircle />+1 (716) 503-6335</a>
-            <a className="contact-book" href="tel:+17165036335">Book a Call Directly</a>
+            <a className="contact-phone" href="#contact"><MessageCircle />********</a>
+            <a className="contact-book" href="#contact">Book a Call Directly</a>
           </div>
         </div>
 

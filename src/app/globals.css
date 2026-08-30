@@ -80,6 +80,11 @@ main > .why-us-section {
   padding-left: 0 !important;
 }
 
+main > .ai-section {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
 main > .trust-strip-section {
   padding-top: 0 !important;
 }

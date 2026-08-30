@@ -1,8 +1,8 @@
+import Image from "next/image";
 import {
   BriefcaseBusiness,
   Check,
   Paintbrush,
-  Smile,
   UserRoundPen,
   UsersRound,
   X,
@@ -16,28 +16,62 @@ type ComparisonRow = {
   status: boolean[];
 };
 
+const criteria = ["Speed", "Flexibility", "Quality", "Scalability", "Affordability"];
+
 const alternatives: ComparisonRow[] = [
   {
     title: "In House Team",
-    description: <>A full-time designer may ensure brand<br />consistency, but there’s a risk of limited<br />expertise even though you pay regularly</>,
+    description: (
+      <>
+        A full-time designer may ensure brand
+        <br />
+        consistency, but there’s a risk of limited
+        <br />
+        expertise even though you pay regularly
+      </>
+    ),
     icon: UsersRound,
     status: [false, false, false, true, false],
   },
   {
     title: "Creative Agencies",
-    description: <>Agencies offer structured processes but<br />mostly with high costs, long timelines, and<br />less flexibility for your projects</>,
+    description: (
+      <>
+        Agencies offer structured processes but
+        <br />
+        mostly with high costs, long timelines, and
+        <br />
+        less flexibility for your projects
+      </>
+    ),
     icon: Paintbrush,
     status: [false, false, true, true, false],
   },
   {
     title: "Freelancers",
-    description: <>Freelancers may provide affordable design<br />services but they mostly lack consistency,<br />reliability, and collaboration</>,
+    description: (
+      <>
+        Freelancers may provide affordable design
+        <br />
+        services but they mostly lack consistency,
+        <br />
+        reliability, and collaboration
+      </>
+    ),
     icon: UserRoundPen,
     status: [false, true, false, false, true],
   },
   {
     title: "Self-Service Tools",
-    description: <>DIY tools like website builders are budget-<br />friendly, but you can’t expect strategic<br />thinking &amp; originality</>,
+    description: (
+      <>
+        DIY tools like website builders are budget-
+        <br />
+        friendly, but you can’t expect strategic
+        <br />
+        thinking &amp; originality
+      </>
+    ),
     icon: BriefcaseBusiness,
     status: [false, false, true, true, false],
   },
@@ -45,7 +79,10 @@ const alternatives: ComparisonRow[] = [
 
 function StatusIcon({ available }: { available: boolean }) {
   return (
-    <span className={available ? "comparison-status comparison-check" : "comparison-status comparison-cross"} aria-label={available ? "Available" : "Unavailable"}>
+    <span
+      className={available ? "comparison-status comparison-check" : "comparison-status comparison-cross"}
+      aria-label={available ? "Available" : "Unavailable"}
+    >
       {available ? <Check aria-hidden="true" /> : <X aria-hidden="true" />}
     </span>
   );
@@ -62,26 +99,43 @@ export default function Comparison() {
         </h2>
       </header>
 
+      {/* Desktop Table View */}
       <div className="comparison-scroll">
         <div className="comparison-table" role="table" aria-label="Design service comparison">
           <div className="comparison-columns" role="row">
             <span role="columnheader">Platform</span>
-            <span role="columnheader">Speed</span>
-            <span role="columnheader">Flexibility</span>
-            <span role="columnheader">Quality</span>
-            <span role="columnheader">Scalability</span>
-            <span role="columnheader">Affordability</span>
+            {criteria.map((item) => (
+              <span role="columnheader" key={item}>
+                {item}
+              </span>
+            ))}
           </div>
 
           <div className="comparison-row comparison-featured" role="row">
             <div className="comparison-platform" role="cell">
-              <span className="comparison-brand-icon"><Smile aria-hidden="true" /></span>
+              <span className="comparison-brand-icon">
+                <Image
+                  src="/images/brand/huipper-mark-clean.png"
+                  alt="Huipper"
+                  width={56}
+                  height={56}
+                  className="comparison-brand-logo-img"
+                />
+              </span>
               <div>
                 <h3>Huipper</h3>
-                <p>Expert-driven &amp; committed to higher quality.<br />Get effective result &amp; full support without<br />hiring in-house employees</p>
+                <p>
+                  Expert-driven &amp; committed to higher quality.
+                  <br />
+                  Get effective result &amp; full support without
+                  <br />
+                  hiring in-house employees
+                </p>
               </div>
             </div>
-            {[true, true, true, true, true].map((available, index) => <StatusIcon available={available} key={index} />)}
+            {[true, true, true, true, true].map((available, index) => (
+              <StatusIcon available={available} key={index} />
+            ))}
           </div>
 
           {alternatives.map((row) => {
@@ -89,17 +143,91 @@ export default function Comparison() {
             return (
               <div className="comparison-row comparison-alternative" role="row" key={row.title}>
                 <div className="comparison-platform" role="cell">
-                  <span className="comparison-alt-icon"><Icon aria-hidden="true" /></span>
+                  <span className="comparison-alt-icon">
+                    <Icon aria-hidden="true" />
+                  </span>
                   <div>
                     <h3>{row.title}</h3>
                     <p>{row.description}</p>
                   </div>
                 </div>
-                {row.status.map((available, index) => <StatusIcon available={available} key={index} />)}
+                {row.status.map((available, index) => (
+                  <StatusIcon available={available} key={index} />
+                ))}
               </div>
             );
           })}
         </div>
+      </div>
+
+      {/* Mobile Card View */}
+      <div className="comparison-mobile-cards" aria-label="Design service comparison cards">
+        <article className="comparison-mobile-card comparison-mobile-featured">
+          <div className="comparison-mobile-header">
+            <span className="comparison-brand-icon">
+              <Image
+                src="/images/brand/huipper-mark-clean.png"
+                alt="Huipper"
+                width={52}
+                height={52}
+                className="comparison-brand-logo-img"
+              />
+            </span>
+            <div className="comparison-mobile-title-wrap">
+              <span className="comparison-featured-badge">Our Solution</span>
+              <h3>Huipper</h3>
+            </div>
+          </div>
+          <p className="comparison-mobile-desc">
+            Expert-driven &amp; committed to higher quality. Get effective result &amp; full support without hiring in-house employees.
+          </p>
+          <div className="comparison-mobile-grid">
+            {criteria.map((item) => (
+              <div className="comparison-mobile-item comparison-item-check" key={item}>
+                <span className="comparison-check-badge" aria-hidden="true">
+                  <Check />
+                </span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </article>
+
+        {alternatives.map((row) => {
+          const Icon = row.icon;
+          return (
+            <article className="comparison-mobile-card comparison-mobile-alt" key={row.title}>
+              <div className="comparison-mobile-header">
+                <span className="comparison-alt-icon">
+                  <Icon aria-hidden="true" />
+                </span>
+                <div className="comparison-mobile-title-wrap">
+                  <h3>{row.title}</h3>
+                </div>
+              </div>
+              <p className="comparison-mobile-desc">{row.description}</p>
+              <div className="comparison-mobile-grid">
+                {criteria.map((item, idx) => {
+                  const available = row.status[idx];
+                  return (
+                    <div
+                      className={`comparison-mobile-item ${available ? "comparison-item-check" : "comparison-item-cross"}`}
+                      key={item}
+                    >
+                      <span
+                        className={available ? "comparison-check-badge" : "comparison-cross-badge"}
+                        aria-hidden="true"
+                      >
+                        {available ? <Check /> : <X />}
+                      </span>
+                      <span>{item}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </article>
+          );
+        })}
       </div>
 
       <style>{`
@@ -217,11 +345,23 @@ export default function Comparison() {
           height: 85px;
           flex: none;
           place-items: center;
-          border-radius: 11px;
+          border-radius: 14px;
         }
 
-        .comparison-brand-icon { background: linear-gradient(145deg, #6845b8, #7553c8); }
-        .comparison-brand-icon svg { width: 39px; height: 39px; padding: 5px; border-radius: 9px; background: #eee9fa; color: #7553c8; stroke-width: 1.7; }
+        .comparison-brand-icon {
+          position: relative;
+          background: linear-gradient(145deg, #6845b8, #7553c8);
+          box-shadow: 0 6px 20px rgba(117, 83, 200, 0.4);
+          overflow: hidden;
+        }
+
+        .comparison-brand-logo-img {
+          width: 54px;
+          height: 54px;
+          object-fit: contain;
+          filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.28));
+        }
+
         .comparison-alt-icon { background: #0b315e; }
         .comparison-alt-icon svg { width: 34px; height: 34px; color: #fff; stroke-width: 1.6; }
 
@@ -229,6 +369,10 @@ export default function Comparison() {
         .comparison-status svg { width: 35px; height: 35px; stroke-width: 1.8; }
         .comparison-check { color: #f4f4f4; }
         .comparison-cross { color: #ff383d; }
+
+        .comparison-mobile-cards {
+          display: none;
+        }
 
         @media (max-width: 1100px) {
           .comparison-section { margin-top: 72px; padding-top: 82px; }
@@ -238,15 +382,148 @@ export default function Comparison() {
           .comparison-columns { padding: 0 28px; }
         }
 
-        @media (max-width: 700px) {
-          .comparison-section { margin: 64px 0 12px; padding: 68px 0 72px; border-radius: 24px; }
+        @media (max-width: 768px) {
+          .comparison-section {
+            margin: 48px 0 12px;
+            padding: 56px 0 64px;
+            border-radius: 24px;
+          }
+
           .comparison-header { padding: 0 18px; }
-          .comparison-header > p { min-height: 31px; margin-bottom: 18px; font-size: 13px; }
-          .comparison-header h2 { font-size: clamp(34px, 10vw, 44px); line-height: 1.08; }
-          .comparison-scroll { padding-bottom: 12px; }
-          .comparison-table { width: 1000px; margin: 38px 16px 0; }
-          .comparison-row { min-height: 178px; }
-          .comparison-featured { min-height: 158px; }
+          .comparison-header > p { min-height: 31px; margin-bottom: 16px; font-size: 13px; }
+          .comparison-header h2 { font-size: clamp(32px, 8.5vw, 42px); line-height: 1.1; letter-spacing: -1.2px; }
+
+          .comparison-scroll {
+            display: none;
+          }
+
+          .comparison-mobile-cards {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 480px;
+            margin: 36px auto 0;
+            padding: 0 16px;
+            gap: 18px;
+            position: relative;
+            z-index: 2;
+          }
+
+          .comparison-mobile-card {
+            border-radius: 20px;
+            padding: 22px 18px;
+            background: #111414;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+          }
+
+          .comparison-mobile-featured {
+            border: 1.5px solid rgba(137, 106, 221, 0.85);
+            background:
+              radial-gradient(circle at 90% 10%, rgba(117, 83, 200, 0.35), transparent 40%),
+              linear-gradient(145deg, #1b153d 0%, #110d29 100%);
+            box-shadow: 0 8px 32px rgba(117, 83, 200, 0.28);
+          }
+
+          .comparison-mobile-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+          }
+
+          .comparison-mobile-header .comparison-brand-icon,
+          .comparison-mobile-header .comparison-alt-icon {
+            width: 54px;
+            height: 54px;
+            border-radius: 12px;
+            flex-shrink: 0;
+          }
+
+          .comparison-mobile-header .comparison-brand-logo-img {
+            width: 36px;
+            height: 36px;
+          }
+
+          .comparison-mobile-header .comparison-alt-icon svg {
+            width: 26px;
+            height: 26px;
+          }
+
+          .comparison-mobile-title-wrap h3 {
+            margin: 0;
+            font-size: 19px;
+            font-weight: 600;
+            line-height: 1.2;
+            color: #fff;
+          }
+
+          .comparison-featured-badge {
+            display: inline-block;
+            padding: 2px 9px;
+            margin-bottom: 4px;
+            border-radius: 999px;
+            background: rgba(137, 106, 221, 0.25);
+            border: 1px solid rgba(183, 166, 229, 0.35);
+            color: #d8cdfb;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+
+          .comparison-mobile-desc {
+            margin: 14px 0 18px;
+            color: #cfd1d7;
+            font-size: 13px;
+            line-height: 1.5;
+          }
+
+          .comparison-mobile-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+          }
+
+          .comparison-mobile-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 12px;
+            font-weight: 500;
+            color: #e5e7eb;
+          }
+
+          .comparison-check-badge,
+          .comparison-cross-badge {
+            display: grid;
+            place-items: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            flex-shrink: 0;
+          }
+
+          .comparison-check-badge {
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+          }
+
+          .comparison-cross-badge {
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+          }
+
+          .comparison-check-badge svg,
+          .comparison-cross-badge svg {
+            width: 12px;
+            height: 12px;
+            stroke-width: 2.5;
+          }
         }
       `}</style>
     </section>

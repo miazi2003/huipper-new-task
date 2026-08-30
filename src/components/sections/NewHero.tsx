@@ -225,7 +225,7 @@ export default function NewHero() {
 
             <aside className="ac-contact-card" id="contact" aria-label="Contact details">
               <small>CONTACT US</small>
-              <a className="ac-email" href="mailto:info@acropolis.uz">info@acropolis.uz</a>
+              <a className="ac-email" href="mailto:huipper.business@gmail.com">huipper.business@gmail.com</a>
               <div className="ac-socials">
                 <a href="#linkedin" aria-label="LinkedIn"><CircleUser /></a>
                 <a href="#telegram" aria-label="Telegram"><Send /></a>
@@ -379,7 +379,7 @@ export default function NewHero() {
           .ac-nav-links{display:none}
           .ac-mobile-menu{display:grid;width:35px;height:35px;padding:0;place-items:center;border:0;border-radius:50%;background:#eee9fa;color:#3b2c78}
           .ac-mobile-menu svg{width:16px;height:16px}
-          .ac-start-button{top:14px;right:14px;width:105px;height:38px;font-size:12px}
+          .ac-start-button{top:14px;right:14px;width:140px;height:38px;font-size:12px}
           .ac-particle-sphere{top:125px;right:-145px;width:430px;height:430px}
           .ac-hero-copy{top:190px;width:calc(100% - 34px)}
           .ac-hero-copy h1{font-size:clamp(32px,9.5vw,42px);letter-spacing:-1.3px}

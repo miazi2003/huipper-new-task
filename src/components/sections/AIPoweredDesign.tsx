@@ -560,11 +560,11 @@ export default function AIPoweredDesign() {
         }
 
         @media (max-width: 760px) {
-          .ai-section { height: auto; min-height: 1540px; margin: 12px; padding: 45px 0 60px; }
+          .ai-section { width: 100%; height: auto; min-height: 1700px; margin: 12px 0; padding: 45px 0 60px; border-radius: 24px 24px 0 0; }
           .ai-header { padding: 0 18px; }
           .ai-header h2 { font-size: 28px; }
           .ai-header > span br { display: none; }
-          .ai-ecosystem { height: 1320px; margin-top: 36px; }
+          .ai-ecosystem { height: 1480px; margin-top: 36px; }
           .ai-tool-tile { width: 38px; height: 38px; border-radius: 10px; }
           .ai-marquees {
             left: 50%;
@@ -576,7 +576,7 @@ export default function AIPoweredDesign() {
           .ai-node { top: 10px; width: 84px; height: 92px; }
           .ai-node-mark { top: 0; width: 84px; height: 84px; }
           .ai-connectors { display: none; }
-          .ai-workflow { top: 144px; grid-template-columns: 280px; gap: 18px; }
+          .ai-workflow { top: 144px; width: min(380px, calc(100vw - 32px)); grid-template-columns: minmax(0, 1fr); gap: 22px; }
           .ai-workflow::before {
             position: absolute;
             z-index: -1;
@@ -587,16 +587,22 @@ export default function AIPoweredDesign() {
             background: linear-gradient(#896add,#7553c8);
             content: "";
           }
-          .ai-stage { height: 250px; padding: 18px; }
-          .ai-stage h3 { font-size: 19px; }
-          .ai-stage-icon { width: 32px; height: 32px; }
-          .ai-stage-description { min-height: 0; margin-top: 10px; font-size: 11px; }
-          .ai-stage-visual { right: 15px; bottom: 15px; left: 15px; height: 132px; padding: 12px; }
-          .ai-stage-tools { min-height: 42px; }
-          .ai-stage-tools .ai-tool-icon { width: 42px; height: 42px; }
-          .ai-outputs { margin-top: 10px; }
-          .ai-outputs span { padding: 5px 6px; }
-          .ai-cta { top: 1230px; width: 190px; height: 44px; font-size: 12px; }
+          .ai-stage {
+            height: 280px;
+            padding: 21px;
+            border-color: rgba(183,166,229,.13);
+            border-radius: 20px;
+            box-shadow: 0 18px 44px rgba(0,0,0,.46),inset 0 1px 0 rgba(255,255,255,.06),inset 0 0 0 7px rgba(255,255,255,.012);
+          }
+          .ai-stage h3 { font-size: 21px; }
+          .ai-stage-icon { width: 36px; height: 36px; }
+          .ai-stage-description { min-height: 0; margin-top: 12px; padding-right: 4px; font-size: 12px; line-height: 1.48; }
+          .ai-stage-visual { right: 18px; bottom: 18px; left: 18px; height: 148px; padding: 15px; border-radius: 13px; }
+          .ai-stage-tools { min-height: 46px; }
+          .ai-stage-tools .ai-tool-icon { width: 46px; height: 46px; }
+          .ai-outputs { margin-top: 13px; gap: 6px; }
+          .ai-outputs span { padding: 6px 8px; font-size: 9px; }
+          .ai-cta { top: 1400px; width: 210px; height: 48px; font-size: 13px; }
         }
 
         @media (prefers-reduced-motion: reduce) {

@@ -158,7 +158,7 @@ export default function ContactCTA() {
           border-radius: 19px;
           background:
             radial-gradient(circle at 12% 14%, transparent 14px, rgba(255,255,255,.12) 15px 17px, transparent 18px) 0 0 / 58px 58px,
-            linear-gradient(145deg, #d6c0ff, #bba0f2);
+            linear-gradient(145deg, #d9cff1, #b7a6e5);
         }
 
         .contact-portrait i { display: grid; width: 185px; height: 185px; place-items: center; border-radius: 50% 50% 0 0; background: linear-gradient(#30333b, #111318); color: #d7d0df; font-style: normal; transform: translateY(24px); }
@@ -167,7 +167,7 @@ export default function ContactCTA() {
         .contact-profile > p { margin: 0; color: #c8c8c8; font-size: 16px; }
         .contact-phone { display: flex; width: max-content; margin-top: 29px; align-items: center; gap: 9px; font-size: 16px; }
         .contact-phone svg { width: 22px; height: 22px; stroke-width: 1.6; }
-        .contact-book { display: block; width: max-content; margin-top: 9px; color: #8b48ff; font-size: 17px; font-weight: 700; }
+        .contact-book { display: block; width: max-content; margin-top: 9px; color: #896add; font-size: 17px; font-weight: 700; }
 
         .contact-form { min-width: 0; }
         .contact-field { display: grid; gap: 15px; min-width: 0; }
@@ -191,7 +191,7 @@ export default function ContactCTA() {
 
         .contact-field input:focus,
         .contact-field textarea:focus,
-        .contact-phone-input:focus-within { border-color: #8553e8; outline: 2px solid rgba(133,83,232,.18); outline-offset: 0; }
+        .contact-phone-input:focus-within { border-color: #7553c8; outline: 2px solid rgba(133,83,232,.18); outline-offset: 0; }
 
         .contact-split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 39px; }
         .contact-phone-input { display: flex; height: 51px; padding: 0 13px; align-items: center; gap: 7px; }
@@ -203,8 +203,8 @@ export default function ContactCTA() {
         .contact-budget legend { margin-bottom: 17px; }
         .contact-budget > div { display: flex; max-width: 520px; flex-wrap: wrap; gap: 16px; }
         .contact-budget button { min-height: 51px; padding: 0 20px; border: 1px solid #5b5b5b; border-radius: 8px; background: rgba(13,13,13,.45); color: #cfd1d7; font-size: 16px; cursor: pointer; }
-        .contact-budget button:focus-visible { outline: 2px solid #8b55ee; outline-offset: 3px; }
-        .contact-budget .contact-budget-active { border-color: #8150d8; background: rgba(103,58,181,.24); color: #fff; }
+        .contact-budget button:focus-visible { outline: 2px solid #896add; outline-offset: 3px; }
+        .contact-budget .contact-budget-active { border-color: #7553c8; background: rgba(117,83,200,.24); color: #fff; }
 
         .contact-details { margin-top: 39px; }
         .contact-field textarea { height: 106px; padding: 16px; resize: none; }
@@ -219,7 +219,7 @@ export default function ContactCTA() {
           gap: 10px;
           border: 0;
           border-radius: 7px;
-          background: linear-gradient(110deg, #6e2de1, #813bfb);
+          background: linear-gradient(110deg, #6845b8, #7553c8);
           color: #fff;
           font-size: 15px;
           font-weight: 700;

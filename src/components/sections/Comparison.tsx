@@ -57,7 +57,7 @@ export default function Comparison() {
       <header className="comparison-header">
         <p>Why Choose Us</p>
         <h2 id="comparison-heading">
-          <em>Design Monks’s</em> Alternative?<br />
+          <em>Huipper’s</em> Alternative?<br />
           <em>Think</em> One More Time!
         </h2>
       </header>
@@ -77,7 +77,7 @@ export default function Comparison() {
             <div className="comparison-platform" role="cell">
               <span className="comparison-brand-icon"><Smile aria-hidden="true" /></span>
               <div>
-                <h3>Design Monks</h3>
+                <h3>Huipper</h3>
                 <p>Expert-driven &amp; committed to higher quality.<br />Get effective result &amp; full support without<br />hiring in-house employees</p>
               </div>
             </div>
@@ -162,7 +162,7 @@ export default function Comparison() {
           z-index: 1;
           width: 100%;
           overflow-x: auto;
-          scrollbar-color: #44376b transparent;
+          scrollbar-color: #3b2c78 transparent;
           scrollbar-width: thin;
         }
 
@@ -199,7 +199,7 @@ export default function Comparison() {
           border-radius: 29px;
           background:
             radial-gradient(circle at 88% 15%, rgba(104, 53, 183, 0.3), transparent 32%),
-            linear-gradient(105deg, #171127 0%, #100d1c 52%, #19102c 100%);
+            linear-gradient(105deg, #211b4d 0%, #171334 52%, #211b4d 100%);
           box-shadow: inset 0 1px 18px rgba(102, 70, 205, 0.08);
         }
 
@@ -220,8 +220,8 @@ export default function Comparison() {
           border-radius: 11px;
         }
 
-        .comparison-brand-icon { background: linear-gradient(145deg, #7438ff, #8137ff); }
-        .comparison-brand-icon svg { width: 39px; height: 39px; padding: 5px; border-radius: 9px; background: #f3eeff; color: #7940ff; stroke-width: 1.7; }
+        .comparison-brand-icon { background: linear-gradient(145deg, #6845b8, #7553c8); }
+        .comparison-brand-icon svg { width: 39px; height: 39px; padding: 5px; border-radius: 9px; background: #eee9fa; color: #7553c8; stroke-width: 1.7; }
         .comparison-alt-icon { background: #0b315e; }
         .comparison-alt-icon svg { width: 34px; height: 34px; color: #fff; stroke-width: 1.6; }
 

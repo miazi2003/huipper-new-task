@@ -111,7 +111,7 @@ export default function FAQ() {
 
         .faq-question:focus-visible {
           border-radius: 8px;
-          outline: 2px solid #6d28e8;
+          outline: 2px solid #7553c8;
           outline-offset: 4px;
         }
 
@@ -121,9 +121,9 @@ export default function FAQ() {
           height: 42px;
           flex: none;
           place-items: center;
-          border: 1.5px solid #5416e8;
+          border: 1.5px solid #6845b8;
           border-radius: 50%;
-          color: #5416e8;
+          color: #6845b8;
           font-style: normal;
           perspective: 300px;
           transform: perspective(300px) rotateX(0deg);
@@ -143,8 +143,8 @@ export default function FAQ() {
         }
 
         .faq-item-open .faq-toggle {
-          border-color: #5920c9;
-          background: #5920c9;
+          border-color: #6845b8;
+          background: #6845b8;
           color: #fff;
           transform: perspective(300px) rotateX(180deg);
         }

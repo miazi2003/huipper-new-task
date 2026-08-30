@@ -4,8 +4,8 @@ import "./globals.css";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 
 export const metadata: Metadata = {
-  title: "Design Monks — Homepage Recreation",
-  description: "A faithful frontend recreation of the Design Monks homepage.",
+  title: "Huipper — Digital Product Design Agency",
+  description: "Huipper designs digital products and experiences that drive meaningful results.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

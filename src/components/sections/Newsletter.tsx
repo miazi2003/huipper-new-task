@@ -125,7 +125,7 @@ export default function Newsletter() {
           gap: 10px;
           border: 0;
           border-radius: 7px;
-          background: linear-gradient(110deg, #692bcf, #813cf8);
+          background: linear-gradient(110deg, #5c3ba6, #7553c8);
           color: #fff;
           font-size: 15px;
           font-weight: 700;
@@ -133,7 +133,7 @@ export default function Newsletter() {
         }
 
         .newsletter-form button:hover { filter: none; }
-        .newsletter-form button:focus-visible { outline: 2px solid #4d16a9; outline-offset: 3px; }
+        .newsletter-form button:focus-visible { outline: 2px solid #5c3ba6; outline-offset: 3px; }
         .newsletter-form button svg { width: 22px; height: 22px; stroke-width: 1.7; }
 
         @media (max-width: 600px) {

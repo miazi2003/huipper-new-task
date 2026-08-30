@@ -7,7 +7,7 @@ const people = [
 
 export default function TrustStrip() {
   return (
-    <section className="trust-strip-section" aria-label="Design Monks social proof">
+    <section className="trust-strip-section" aria-label="Huipper social proof">
       <div className="trust-strip">
         <div className="trust-people" aria-label="More than 40 collaborators and clients">
           {people.map((person) => (

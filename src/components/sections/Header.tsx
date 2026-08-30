@@ -34,10 +34,10 @@ export default function Header() {
     >
       <Link
         href="/"
-        aria-label="Design Monks home"
-        className="dm-brand-logo pointer-events-auto absolute left-1/2 top-[18px] -translate-x-1/2"
+        aria-label="Huipper home"
+        className="dm-brand-logo pointer-events-auto absolute left-[calc(50%+84px)] top-[18px] -translate-x-1/2"
       >
-        <span className="sr-only">Design Monks</span>
+        <span className="sr-only">Huipper</span>
       </Link>
 
       <div className="dm-navbar-wrapper">
@@ -69,9 +69,9 @@ export default function Header() {
 
       <style>{`
         .dm-brand-logo {
-          width: 168px;
-          height: 28px;
-          background-image: url("https://cdn.prod.website-files.com/672a72b52eb5f37692d645a9/679a08604def1d26213e6133_designmonks%20(1).svg");
+          width: 224px;
+          height: 56px;
+          background-image: url("/images/brand/huipper-logo.webp");
           background-position: center;
           background-repeat: no-repeat;
           background-size: contain;
@@ -153,7 +153,7 @@ export default function Header() {
         }
 
         .dm-project-cta {
-          background: #5d3c9d;
+          background: #3b2c78;
           isolation: isolate;
           transition: box-shadow 260ms ease;
         }
@@ -166,9 +166,9 @@ export default function Header() {
           background: conic-gradient(
             from 0deg,
             transparent 0deg 282deg,
-            #7950df 310deg,
+            #7553c8 310deg,
             #ffffff 327deg,
-            #8a62ed 342deg,
+            #896add 342deg,
             transparent 360deg
           );
           content: "";
@@ -190,7 +190,7 @@ export default function Header() {
         header[data-scrolled="true"] .dm-project-cta {
           box-shadow:
             inset 0 1px 0 rgba(255, 255, 255, 0.34),
-            0 3px 12px rgba(112, 45, 244, 0.3);
+            0 3px 12px rgba(117, 83, 200, 0.3);
         }
 
         header[data-scrolled="true"] .dm-project-cta::before {
@@ -198,7 +198,7 @@ export default function Header() {
         }
 
         header[data-scrolled="true"] .dm-project-cta::after {
-          background: linear-gradient(105deg, #6d2ee9 0%, #7e38f6 58%, #8d45ff 100%);
+          background: linear-gradient(105deg, #6845b8 0%, #7553c8 58%, #896add 100%);
         }
 
         .dm-project-cta svg {

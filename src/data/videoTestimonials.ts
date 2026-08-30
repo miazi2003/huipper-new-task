@@ -19,7 +19,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     logo: "",
     poster: "",
     videoSrc: "https://designmonks.b-cdn.net/Client%20Testimonials/David_DM.mp4",
-    quote: "A fantastic experience working with Design Monks. They delivered more than we imagined.",
+    quote: "A fantastic experience working with Huipper. They delivered more than we imagined.",
     backgroundColor: "#a8caa0",
   },
   {
@@ -30,7 +30,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     logo: "",
     poster: "",
     videoSrc: "https://designmonks.b-cdn.net/Client%20Testimonials/Arvin_DM.mp4",
-    quote: "Design Monks felt like part of our team. They understood our vision and brought it to life.",
+    quote: "Huipper felt like part of our team. They understood our vision and brought it to life.",
     backgroundColor: "#adf0e3",
   },
   {
@@ -41,8 +41,8 @@ export const videoTestimonials: VideoTestimonial[] = [
     logo: "",
     poster: "",
     videoSrc: "https://designmonks.b-cdn.net/Client%20Testimonials/Arvin_DM.mp4",
-    quote: "The whole Design Monks team made a complex product feel clear, useful, and beautifully simple.",
-    backgroundColor: "#b4a8f1",
+    quote: "The whole Huipper team made a complex product feel clear, useful, and beautifully simple.",
+    backgroundColor: "#c9baf0",
   },
   {
     id: "ontik",
@@ -52,7 +52,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     logo: "",
     poster: "",
     videoSrc: "https://designmonks.b-cdn.net/Client%20Testimonials/David_DM.mp4",
-    quote: "We have worked with Design Monks for more than 10 projects, and the quality stays exceptional.",
+    quote: "We have worked with Huipper for more than 10 projects, and the quality stays exceptional.",
     backgroundColor: "#cceaf8",
   },
   {
@@ -63,7 +63,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     logo: "",
     poster: "",
     videoSrc: "https://designmonks.b-cdn.net/Client%20Testimonials/Arvin_DM.mp4",
-    quote: "We tried many designers before, but the Monks finally worked out exactly what we needed.",
+    quote: "We tried many designers before, but Huipper finally worked out exactly what we needed.",
     backgroundColor: "#ffe399",
   },
   {
@@ -74,7 +74,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     logo: "",
     poster: "",
     videoSrc: "https://designmonks.b-cdn.net/Client%20Testimonials/David_DM.mp4",
-    quote: "A fantastic experience working with Design Monks. They delivered more than we imagined.",
+    quote: "A fantastic experience working with Huipper. They delivered more than we imagined.",
     backgroundColor: "#a8caa0",
   },
   {
@@ -85,7 +85,7 @@ export const videoTestimonials: VideoTestimonial[] = [
     logo: "",
     poster: "",
     videoSrc: "https://designmonks.b-cdn.net/Client%20Testimonials/Arvin_DM.mp4",
-    quote: "We tried many designers before, but the Monks finally worked out exactly what we needed.",
+    quote: "We tried many designers before, but Huipper finally worked out exactly what we needed.",
     backgroundColor: "#ffe399",
   },
 ];

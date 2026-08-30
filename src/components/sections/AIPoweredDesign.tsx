@@ -383,7 +383,7 @@ export default function AIPoweredDesign() {
           gap: 10px;
           border: 1px solid rgba(255, 255, 255, 0.72);
           border-radius: 7px;
-          background: linear-gradient(110deg, #6c2de8, #823cff);
+          background: linear-gradient(110deg, #6845b8, #7553c8);
           color: #fff;
           font-size: 16px;
           font-weight: 700;

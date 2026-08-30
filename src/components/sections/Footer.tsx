@@ -83,7 +83,7 @@ export default function Footer() {
       <div className="footer-divider">
         <div className="footer-inner footer-legal">
           <Link href="/terms">Terms &amp; Conditions</Link>
-          <p>© 2026, Design Monks LLC, All Rights Reserved.</p>
+          <p>© 2026, Huipper, All Rights Reserved.</p>
           <Link href="/privacy">Privacy Policy</Link>
         </div>
       </div>
@@ -109,7 +109,7 @@ export default function Footer() {
         .footer-column nav { display: grid; gap: 20px; }
         .footer-column a { display: flex; width: max-content; align-items: center; gap: 7px; color: #999; font-size: 16px; font-weight: 500; line-height: 1.25; }
         .footer-column a:hover { color: #fff; }
-        .footer-column a i { display: grid; width: 16px; height: 16px; place-items: center; border-radius: 50%; background: #7939f4; color: #fff; }
+        .footer-column a i { display: grid; width: 16px; height: 16px; place-items: center; border-radius: 50%; background: #7553c8; color: #fff; }
         .footer-column a i svg { width: 11px; height: 11px; stroke-width: 2; }
 
         .footer-divider { border-top: 1px solid #252525; }

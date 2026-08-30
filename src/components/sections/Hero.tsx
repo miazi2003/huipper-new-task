@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const purpleBackground =
-  "https://cdn.prod.website-files.com/672a72b52eb5f37692d645a9/69ca30aa7176f823e816838f_Hero%20(1).svg";
+  "radial-gradient(circle at 50% 0%, #7553c8 0%, #3b2c78 40%, #211b4d 72%, #171334 100%)";
 const dottedTexture =
   "https://cdn.prod.website-files.com/672a72b52eb5f37692d645a9/69ca30bcd624ff132ecf6c42_9931928039c2b9614fcf61170716ce8c_texture%20%281%29.svg";
 
@@ -99,7 +99,7 @@ export default function Hero() {
     <section className="dm-hero" aria-labelledby="hero-heading">
       <div
         className="dm-hero-background"
-        style={{ backgroundImage: `url("${purpleBackground}")` }}
+        style={{ backgroundImage: purpleBackground }}
         aria-hidden="true"
       />
       <div
@@ -312,7 +312,7 @@ export default function Hero() {
           overflow: hidden;
           border: 1px solid rgba(255, 255, 255, 0.65);
           border-radius: 6px;
-          background: linear-gradient(110deg, #6c2be8, #833cff);
+          background: linear-gradient(110deg, #6845b8, #7553c8);
           font-size: 16px;
           font-weight: 700;
           box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 6px 18px rgba(39, 11, 95, .25);

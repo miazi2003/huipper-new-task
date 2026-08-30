@@ -174,7 +174,7 @@ export default function Benefits() {
           list-style: none;
         }
 
-        .benefit-payment li::before { margin-right: 9px; color: #7b3cff; content: "●"; font-size: 11px; }
+        .benefit-payment li::before { margin-right: 9px; color: #7553c8; content: "●"; font-size: 11px; }
 
         .payment-art { position: absolute; right: -36px; bottom: -34px; width: 340px; height: 238px; }
         .payment-card {
@@ -188,7 +188,7 @@ export default function Benefits() {
           border: 1px solid rgba(255,255,255,.72);
           border-radius: 14px;
           background: linear-gradient(130deg, rgba(255,255,255,.76), rgba(215,255,231,.4));
-          color: #7044ff;
+          color: #7553c8;
           box-shadow: 0 10px 22px rgba(65,64,137,.12);
           transform: rotate(-28deg);
         }
@@ -227,7 +227,7 @@ export default function Benefits() {
           place-items: center;
           border: 1.5px solid #fff;
           border-radius: 50%;
-          background: linear-gradient(145deg, #311765, #151820);
+          background: linear-gradient(145deg, #211b4d, #171334);
           color: #fff;
           font-size: 9px;
           font-weight: 700;
@@ -238,7 +238,7 @@ export default function Benefits() {
           grid-column: 1 / 4;
           grid-row: 2;
           padding: 25px 24px;
-          background: linear-gradient(150deg, #7241ff 0%, #7d32ff 65%, #8b4eff 100%);
+          background: linear-gradient(150deg, #7553c8 0%, #6845b8 65%, #896add 100%);
           color: #fff;
         }
         .benefit-support > p { max-width: 250px; color: #fff; font-weight: 600; }

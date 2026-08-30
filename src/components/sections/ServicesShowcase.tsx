@@ -206,7 +206,7 @@ export default function ServicesShowcase() {
           width: 100%;
           height: 1px;
           margin: 17px 0 17px;
-          background: #641fff;
+          background: #6845b8;
         }
 
         .services-active-details p,
@@ -225,7 +225,7 @@ export default function ServicesShowcase() {
           margin-top: 29px;
           align-items: center;
           gap: 8px;
-          color: #7735ff;
+          color: #7553c8;
           font-size: 15px;
           font-weight: 700;
         }

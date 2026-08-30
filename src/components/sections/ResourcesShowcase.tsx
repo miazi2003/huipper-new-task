@@ -66,7 +66,7 @@ export default function ResourcesShowcase() {
           padding-right: 0 !important;
           padding-left: 0 !important;
           overflow: hidden;
-          background: #f1eaff;
+          background: #eee9fa;
           color: #101010;
         }
 

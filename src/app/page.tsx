@@ -7,8 +7,7 @@ import FAQ from "@/components/sections/FAQ";
 import Footer from "@/components/sections/Footer";
 import FooterBrandVisual from "@/components/sections/FooterBrandVisual";
 import GlobalLocations from "@/components/sections/GlobalLocations";
-import Header from "@/components/sections/Header";
-import Hero from "@/components/sections/Hero";
+import NewHero from "@/components/sections/NewHero";
 import IndustryWins from "@/components/sections/IndustryWins";
 import Newsletter from "@/components/sections/Newsletter";
 import ResourcesShowcase from "@/components/sections/ResourcesShowcase";
@@ -21,9 +20,8 @@ import WhyUsVideo from "@/components/sections/WhyUsVideo";
 export default function HomePage() {
   return (
     <>
-      <Header />
       <main id="main-content">
-        <Hero />
+        <NewHero />
         <TrustedBrands />
         <IndustryWins />
         <ClientStories />

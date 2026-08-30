@@ -71,7 +71,7 @@ export const servicesShowcase: ServiceShowcase[] = [
         image: "/images/services-showcase/branding-identity.webp",
         alt: "Colorful brand identity system",
         column: "left",
-        fallback: "linear-gradient(145deg, #9575ff 0%, #6439db 48%, #291264 100%)",
+        fallback: "linear-gradient(145deg, #896add 0%, #5c3ba6 48%, #211b4d 100%)",
       },
       {
         image: "/images/services-showcase/branding-packaging.webp",

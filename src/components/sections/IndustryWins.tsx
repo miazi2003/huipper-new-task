@@ -271,7 +271,7 @@ export default function IndustryWins() {
           width: 22px;
           height: 22px;
           fill: none;
-          stroke: #7130ff;
+          stroke: #7553c8;
           stroke-linecap: round;
           stroke-linejoin: round;
           stroke-width: 1.7;
@@ -298,7 +298,7 @@ export default function IndustryWins() {
           gap: 10px;
           border: 1px solid rgba(255, 255, 255, 0.58);
           border-radius: 7px;
-          background: linear-gradient(110deg, #7130ef 0%, #8038f7 72%, #7431de 100%);
+          background: linear-gradient(110deg, #6845b8 0%, #7553c8 72%, #5c3ba6 100%);
           color: #fff;
           font-size: 16px;
           font-weight: 700;

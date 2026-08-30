@@ -8,6 +8,7 @@ export type AITool = {
 
 export type WorkflowStage = {
   title: string;
+  description: string;
   toolIds: string[];
   outputs: string[];
 };
@@ -43,23 +44,27 @@ export const bottomMarqueeTools = [
 
 export const workflowStages: WorkflowStage[] = [
   {
-    title: "Discover & Strategy",
+    title: "Discover & Define",
+    description: "We learn your product, users, and goals so every decision begins with clarity.",
     toolIds: ["claude", "miro", "openai"],
-    outputs: ["Discovery Report", "User Personas", "Content Hierarchy"],
+    outputs: ["Product Direction", "User Insights", "Experience Map"],
   },
   {
-    title: "Design",
+    title: "Design & Validate",
+    description: "We turn insights into focused interfaces, then validate the experience before scaling.",
     toolIds: ["figma", "cursor", "framer", "openai"],
-    outputs: ["Visual Direction", "UI Screens", "Design System"],
+    outputs: ["Product Concept", "Validated UI", "Design System"],
   },
   {
-    title: "Build",
+    title: "Build & Scale",
+    description: "We translate the system into production-ready experiences built to evolve with you.",
     toolIds: ["webflow", "bolt", "relume", "v0"],
-    outputs: ["Codebase", "CMS Integration", "Component Docs"],
+    outputs: ["Production UI", "CMS Workflows", "Component Library"],
   },
   {
-    title: "Optimise",
+    title: "Launch & Evolve",
+    description: "We measure real behavior, improve what matters, and create a clear path for growth.",
     toolIds: ["zapier", "claude", "openai"],
-    outputs: ["CRO Recommendations", "A/B Test Plan", "Launch Report"],
+    outputs: ["Growth Insights", "Test Roadmap", "Launch Intelligence"],
   },
 ];

@@ -1,22 +1,18 @@
 import { globalLocations } from "@/data/locations";
 
-const videoSrc = "https://designmonks.b-cdn.net/Website%20Design%20Videos/footer_globe.mp4";
+const videoSrc = "https://streamable.com/e/b1bltk?autoplay=1&muted=1&loop=1";
 
 export default function GlobalLocations() {
   return (
     <section className="locations-section" aria-label="Our global locations">
-      <video
+      <iframe
         className="locations-video"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        poster="/images/global-locations/earth-poster.png"
-        aria-hidden="true"
-      >
-        <source src={videoSrc} type="video/mp4" />
-      </video>
+        src={videoSrc}
+        title="Huipper footer showcase video"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowFullScreen
+        loading="lazy"
+      />
       <div className="locations-grade" aria-hidden="true" />
 
       <div className="locations-grid">
@@ -57,12 +53,16 @@ export default function GlobalLocations() {
 
         .locations-video {
           position: absolute;
-          inset: 0;
-          width: 100%;
+          top: 50%;
+          left: 50%;
+          width: auto;
+          min-width: 100%;
           height: 100%;
+          aspect-ratio: 16 / 9;
           max-width: none;
-          object-fit: cover;
-          object-position: center center;
+          border: 0;
+          pointer-events: none;
+          transform: translate(-50%, -50%) scale(1.04);
         }
 
         .locations-grade {
@@ -126,7 +126,6 @@ export default function GlobalLocations() {
 
         @media (max-width: 1050px) {
           .locations-section { height: 920px; }
-          .locations-video { object-position: center center; }
           .locations-grid {
             top: 43%;
             width: min(700px, calc(100% - 48px));
@@ -138,7 +137,6 @@ export default function GlobalLocations() {
 
         @media (max-width: 600px) {
           .locations-section { height: 1000px; }
-          .locations-video { object-position: center center; }
           .locations-grade { background: linear-gradient(180deg, rgba(0,8,25,.08), rgba(0,3,10,.48)); }
           .locations-grid { top: 39%; width: calc(100% - 24px); gap: 12px 10px; }
           .location-card { height: 118px; padding: 11px 8px; border-radius: 14px; }

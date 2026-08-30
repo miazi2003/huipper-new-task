@@ -153,9 +153,9 @@ export default function ClientStories() {
           margin: 0 0 22px;
           padding: 0 13px;
           align-items: center;
-          border: 1px solid #00bd68;
+          border: 1px solid #896add;
           border-radius: 999px;
-          color: #008d4e;
+          color: #6845b8;
           font-size: 15px;
           line-height: 1;
         }

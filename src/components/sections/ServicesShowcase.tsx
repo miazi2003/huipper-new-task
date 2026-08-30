@@ -2,20 +2,30 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { type CSSProperties, useCallback, useEffect, useRef, useState } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { servicesShowcase, type ServiceShowcase } from "@/data/servicesShowcase";
 
 function ServiceDetails({ service, mobile = false }: { service: ServiceShowcase; mobile?: boolean }) {
+  const items = service.description.split(", ");
   return (
     <div className={mobile ? "services-mobile-details" : "services-active-details"}>
       <h3>
         {service.titlePrefix} <em>{service.titleItalic}</em>
       </h3>
       <span className="services-divider" aria-hidden="true" />
-      <p>{service.description}</p>
-      <Link href={service.href}>
-        See More <span aria-hidden="true">→</span>
+      <p className="services-description">
+        {items.map((item, idx) => (
+          <span key={item} className="service-tag-wrapper">
+            <strong className="service-bold-text">{item}</strong>
+            {idx < items.length - 1 && <span className="service-bullet" aria-hidden="true"> · </span>}
+          </span>
+        ))}
+      </p>
+      <Link className="services-cta-btn" href={service.href}>
+        <span>See More</span>
+        <i><ArrowRight /></i>
       </Link>
     </div>
   );
@@ -123,6 +133,9 @@ export default function ServicesShowcase() {
                         sizes="(max-width: 760px) 90vw, (max-width: 1100px) 34vw, 360px"
                         onError={(event) => { event.currentTarget.style.opacity = "0"; }}
                       />
+                      <div className="services-card-overlay">
+                        <span className="services-card-badge">{project.alt}</span>
+                      </div>
                     </article>
                   ))}
                 </div>
@@ -213,27 +226,74 @@ export default function ServicesShowcase() {
         .services-mobile-details p {
           max-width: 380px;
           margin: 0;
-          color: #cacaca;
+          color: #d1d5db;
           font-size: 15px;
-          font-weight: 500;
-          line-height: 1.48;
+          font-weight: 400;
+          line-height: 1.6;
         }
 
-        .services-active-details a,
-        .services-mobile-details a {
-          display: inline-flex;
-          margin-top: 29px;
-          align-items: center;
-          gap: 8px;
-          color: #7553c8;
-          font-size: 15px;
+        .service-tag-wrapper {
+          display: inline;
+        }
+
+        .service-bold-text {
           font-weight: 700;
+          color: #ffffff;
+          letter-spacing: -0.2px;
+          transition: color 0.2s ease;
         }
 
-        .services-active-details a span,
-        .services-mobile-details a span { transition: transform 180ms ease; }
-        .services-active-details a:hover span,
-        .services-mobile-details a:hover span { transform: translateX(5px); }
+        .service-bullet {
+          color: #7553c8;
+          font-weight: 700;
+          padding: 0 3px;
+        }
+
+        .services-cta-btn {
+          display: inline-flex;
+          width: auto;
+          min-width: 148px;
+          height: 44px;
+          margin-top: 29px;
+          padding: 0 5px 0 18px;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          border-radius: 999px;
+          background: linear-gradient(135deg, #7553c8 0%, #5c3ba6 100%);
+          color: #fff !important;
+          font-size: 13px;
+          font-weight: 600;
+          box-shadow: 0 8px 24px rgba(33, 27, 77, 0.28), 0 2px 10px rgba(117, 83, 200, 0.35);
+          transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .services-cta-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 28px rgba(33, 27, 77, 0.35), 0 4px 14px rgba(117, 83, 200, 0.5);
+        }
+
+        .services-cta-btn i {
+          display: grid;
+          width: 32px;
+          height: 32px;
+          place-items: center;
+          border-radius: 50%;
+          background: #fff;
+          color: #7553c8;
+          transition: transform 180ms ease;
+        }
+
+        .services-cta-btn i svg {
+          width: 15px;
+          height: 15px;
+          stroke-width: 1.6;
+        }
+
+        .services-cta-btn:hover i {
+          transform: translateX(2px);
+        }
+
         .services-mobile-details { display: none; }
 
         .services-gallery { min-width: 0; }
@@ -258,16 +318,66 @@ export default function ServicesShowcase() {
           width: 100%;
           aspect-ratio: 0.72;
           overflow: hidden;
-          border-radius: 17px;
+          border-radius: 20px;
+          border: 1px solid rgba(255, 255, 255, 0.08);
           background: var(--project-fallback);
-          box-shadow: 0 16px 50px rgba(0, 0, 0, 0.28);
+          box-shadow: 0 16px 50px rgba(0, 0, 0, 0.35);
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        .services-card:hover {
+          transform: translateY(-5px);
+          border-color: rgba(117, 83, 200, 0.4);
+          box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(117, 83, 200, 0.15);
         }
 
         .services-card-right { margin-top: 96px; }
 
         .services-card img {
           object-fit: cover;
-          transition: opacity 160ms ease;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease;
+        }
+
+        .services-card:hover img {
+          transform: scale(1.04);
+        }
+
+        .services-card-overlay {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: flex-end;
+          padding: 18px;
+          background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.78) 100%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        .services-card:hover .services-card-overlay {
+          opacity: 1;
+        }
+
+        .services-card-badge {
+          display: inline-block;
+          padding: 6px 14px;
+          border-radius: 999px;
+          background: rgba(18, 18, 24, 0.85);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          color: #ffffff;
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: -0.2px;
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+          transform: translateY(6px);
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .services-card:hover .services-card-badge {
+          transform: translateY(0);
         }
 
         @media (max-width: 1100px) and (min-width: 761px) {
@@ -291,8 +401,10 @@ export default function ServicesShowcase() {
           .services-group { min-height: 0; margin-bottom: 64px; }
           .services-group:last-child { margin-bottom: 0; }
           .services-projects { grid-template-columns: 1fr; gap: 18px; }
-          .services-card { aspect-ratio: 0.78; border-radius: 14px; }
+          .services-card { aspect-ratio: 0.78; border-radius: 16px; }
           .services-card-right { margin-top: 0; }
+          .services-card-overlay { opacity: 1; padding: 14px; background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.75) 100%); }
+          .services-card-badge { font-size: 12px; padding: 4px 10px; transform: translateY(0); }
         }
       `}</style>
     </section>

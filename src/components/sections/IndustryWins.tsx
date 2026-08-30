@@ -27,7 +27,7 @@ export default function IndustryWins() {
       media.add("(min-width: 901px)", () => {
         const cards = gsap.utils.toArray<HTMLElement>(".iw-card", stack);
         if (cards.length < 2) return;
-        const expandedHeight = () => cards[0].offsetHeight;
+        const expandedHeight = () => cards[0]?.offsetHeight || 420;
 
         cards.forEach((card, index) => {
           gsap.set(card, {
@@ -43,11 +43,11 @@ export default function IndustryWins() {
             start: "top 14%",
             end: () => `+=${Math.max(window.innerHeight * 3.75, 3000)}`,
             pin: true,
-            pinType: "fixed",
             pinSpacing: true,
             scrub: 0.65,
-            anticipatePin: 0,
+            anticipatePin: 1,
             invalidateOnRefresh: true,
+            refreshPriority: 1,
           },
         });
 
@@ -96,8 +96,8 @@ export default function IndustryWins() {
   return (
     <section className="iw-section" ref={rootRef} aria-labelledby="industry-wins-heading">
       <div className="iw-intro">
-        <p>Industry Wins</p>
-        <h2 id="industry-wins-heading">Proven Success in<br /><em>Every Industry</em></h2>
+        <p>Huipper Impact</p>
+        <h2 id="industry-wins-heading">Digital Products Built to Win<br /><em>Across Every Industry</em></h2>
       </div>
 
       <div className="iw-stack" ref={stackRef}>
@@ -129,15 +129,14 @@ export default function IndustryWins() {
 
       <Link className="iw-all-projects" href="/projects">
         <span>See All Projects</span>
-        <ArrowIcon />
+        <i><ArrowIcon /></i>
       </Link>
 
       <style>{`
         .iw-section {
           position: relative;
           padding: 96px 24px 60px;
-          overflow: clip;
-          background: #fbfbfb;
+          background: #f8f6fc;
           color: #0b0b0b;
         }
 
@@ -153,9 +152,9 @@ export default function IndustryWins() {
           margin: 0 0 20px;
           padding: 0 13px;
           align-items: center;
-          border: 1px solid #00bd68;
+          border: 1px solid #896add;
           border-radius: 999px;
-          color: #008d4e;
+          color: #6845b8;
           font-size: 15px;
           line-height: 1;
         }
@@ -178,8 +177,6 @@ export default function IndustryWins() {
           width: min(1254px, 100%);
           height: 432px;
           margin: 0 auto;
-          backface-visibility: hidden;
-          transform: translateZ(0);
           isolation: isolate;
         }
 
@@ -194,7 +191,8 @@ export default function IndustryWins() {
           gap: 40px;
           overflow: hidden;
           border-radius: 16px;
-          box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04);
+          border: 1px solid rgba(117, 83, 200, .11);
+          box-shadow: 0 -1px 0 rgba(59, 44, 120, .05);
           will-change: transform;
         }
 
@@ -257,7 +255,7 @@ export default function IndustryWins() {
           height: 42px;
           place-items: center;
           border-radius: 50%;
-          background: #202124;
+          background: linear-gradient(145deg, #7553c8, #211b4d);
           color: white;
           font-size: 12px;
           font-weight: 700;
@@ -290,30 +288,50 @@ export default function IndustryWins() {
 
         .iw-all-projects {
           display: flex;
-          width: 207px;
-          height: 56px;
+          width: 210px;
+          height: 48px;
           margin: 44px auto 0;
+          padding: 0 6px 0 22px;
           align-items: center;
-          justify-content: center;
-          gap: 10px;
-          border: 1px solid rgba(255, 255, 255, 0.58);
-          border-radius: 7px;
-          background: linear-gradient(110deg, #6845b8 0%, #7553c8 72%, #5c3ba6 100%);
+          justify-content: space-between;
+          border-radius: 999px;
+          background: linear-gradient(135deg, #7553c8 0%, #5c3ba6 100%);
           color: #fff;
-          font-size: 16px;
-          font-weight: 700;
+          font-size: 14px;
+          font-weight: 600;
           line-height: 1;
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+          box-shadow: 0 8px 24px rgba(33, 27, 77, 0.28), 0 2px 10px rgba(117, 83, 200, 0.35);
+          transition: transform 180ms ease, box-shadow 180ms ease;
         }
 
-        .iw-all-projects svg {
-          width: 24px;
-          height: 24px;
+        .iw-all-projects:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 28px rgba(33, 27, 77, 0.35), 0 4px 14px rgba(117, 83, 200, 0.5);
+        }
+
+        .iw-all-projects i {
+          display: grid;
+          width: 36px;
+          height: 36px;
+          place-items: center;
+          border-radius: 50%;
+          background: #fff;
+          color: #7553c8;
+          transition: transform 180ms ease;
+        }
+
+        .iw-all-projects i svg {
+          width: 16px;
+          height: 16px;
           fill: none;
-          stroke: currentColor;
+          stroke: #7553c8;
           stroke-linecap: round;
           stroke-linejoin: round;
-          stroke-width: 1.7;
+          stroke-width: 1.8;
+        }
+
+        .iw-all-projects:hover i {
+          transform: translateX(2px);
         }
 
         @media (max-width: 1100px) and (min-width: 901px) {

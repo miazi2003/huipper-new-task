@@ -55,7 +55,23 @@ main > .dm-hero {
 }
 
 main > .ac-hero-section {
+  padding: 0 !important;
+}
+
+main > .tb-section {
+  padding: 8px 10px !important;
+}
+
+main > .hp-section {
+  padding: 110px 0 96px !important;
+}
+
+main > .gr-section {
   padding: 16px !important;
+}
+
+main > .benefits-section {
+  padding: 96px 16px !important;
 }
 
 main > .why-us-section {
@@ -82,6 +98,18 @@ main > .trust-strip-section {
 
   main > .dm-hero {
     padding-top: 1.5rem !important;
+  }
+
+  main > .hp-section {
+    padding: 78px 0 66px !important;
+  }
+
+  main > .gr-section {
+    padding: 10px !important;
+  }
+
+  main > .benefits-section {
+    padding: 68px 10px !important;
   }
 }
 

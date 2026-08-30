@@ -77,7 +77,8 @@ export default function ContactCTA() {
           </label>
 
           <button className="contact-submit" type="submit">
-            Let&apos;s Connect <ArrowRight aria-hidden="true" />
+            <span>Let&apos;s Connect</span>
+            <i><ArrowRight aria-hidden="true" /></i>
           </button>
         </form>
       </div>
@@ -211,24 +212,44 @@ export default function ContactCTA() {
 
         .contact-submit {
           display: flex;
-          width: 178px;
-          height: 56px;
+          width: 184px;
+          height: 48px;
           margin-top: 36px;
+          padding: 0 6px 0 20px;
           align-items: center;
-          justify-content: center;
-          gap: 10px;
+          justify-content: space-between;
           border: 0;
-          border-radius: 7px;
-          background: linear-gradient(110deg, #6845b8, #7553c8);
+          border-radius: 999px;
+          background: linear-gradient(135deg, #7553c8 0%, #5c3ba6 100%);
           color: #fff;
-          font-size: 15px;
-          font-weight: 700;
-          box-shadow: inset 0 1px 0 rgba(255,255,255,.22);
+          font-size: 14px;
+          font-weight: 600;
+          box-shadow: 0 8px 24px rgba(33, 27, 77, 0.28), 0 2px 10px rgba(117, 83, 200, 0.35);
           cursor: pointer;
+          transition: transform 180ms ease, box-shadow 180ms ease;
         }
-        .contact-submit svg { width: 22px; height: 22px; transition: transform 160ms ease; }
-        .contact-submit:hover { filter: brightness(1.08); }
-        .contact-submit:hover svg { transform: translateX(4px); }
+        .contact-submit:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 28px rgba(33, 27, 77, 0.35), 0 4px 14px rgba(117, 83, 200, 0.5);
+        }
+        .contact-submit i {
+          display: grid;
+          width: 36px;
+          height: 36px;
+          place-items: center;
+          border-radius: 50%;
+          background: #fff;
+          color: #7553c8;
+          transition: transform 180ms ease;
+        }
+        .contact-submit i svg {
+          width: 16px;
+          height: 16px;
+          stroke-width: 1.8;
+        }
+        .contact-submit:hover i {
+          transform: translateX(2px);
+        }
         .contact-submit:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
         @media (max-width: 1050px) and (min-width: 761px) {

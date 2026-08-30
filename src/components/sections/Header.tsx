@@ -52,11 +52,11 @@ export default function Header() {
             Services
           </Link>
           <Link
-            className="dm-project-cta relative flex h-[56px] w-[208px] items-center justify-center gap-[12px] overflow-hidden rounded-[8px] font-bold"
+            className="dm-project-cta relative flex h-[52px] w-[208px] items-center justify-between overflow-hidden rounded-[999px] px-[6px] pl-[20px] font-semibold text-[14px]"
             href="/contact"
           >
             <span className="relative z-[2]">Start a Project</span>
-            <ArrowIcon />
+            <i className="relative z-[2] grid h-[36px] w-[36px] place-items-center rounded-full bg-white text-[#7553c8]"><ArrowIcon /></i>
           </Link>
           <Link className="flex h-full items-center justify-center" href="/career">
             Career
@@ -181,7 +181,7 @@ export default function Header() {
           position: absolute;
           z-index: 1;
           inset: 1px;
-          border-radius: 7px;
+          border-radius: 999px;
           background: linear-gradient(112deg, #090909 18%, #101010 72%, #21192c 100%);
           content: "";
           transition: background 260ms ease;

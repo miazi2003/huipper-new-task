@@ -41,11 +41,20 @@ export default function Newsletter() {
       </nav>
 
       <form className="newsletter-form" onSubmit={(event) => event.preventDefault()}>
-        <label>
-          <Mail aria-hidden="true" />
-          <input type="email" name="email" placeholder="Your email here" aria-label="Email address" required />
-        </label>
-        <button type="submit">Subscribe <ArrowRight aria-hidden="true" /></button>
+        <div className="newsletter-input-wrapper">
+          <Mail className="newsletter-mail-icon" aria-hidden="true" />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your email here"
+            aria-label="Email address"
+            required
+          />
+          <button type="submit">
+            <span>Subscribe</span>
+            <i><ArrowRight aria-hidden="true" /></i>
+          </button>
+        </div>
       </form>
 
       <style>{`
@@ -91,50 +100,108 @@ export default function Newsletter() {
         .newsletter-socials .brand-fill { fill: currentColor; stroke: none; }
 
         .newsletter-form {
-          display: flex;
-          width: 498px;
-          max-width: 100%;
+          width: min(520px, 100%);
           margin: 47px auto 0;
-          gap: 8px;
         }
 
-        .newsletter-form label {
+        .newsletter-input-wrapper {
+          position: relative;
           display: flex;
-          width: 312px;
-          height: 57px;
-          padding: 0 17px;
+          width: 100%;
+          height: 58px;
+          padding: 5px 6px 5px 20px;
           align-items: center;
-          gap: 10px;
-          border: 1px solid #dedede;
-          border-radius: 8px;
+          border: 1.5px solid #dfdfdf;
+          border-radius: 999px;
           background: #fff;
+          box-shadow: 0 4px 20px rgba(0,0,0,.03);
+          transition: border-color 180ms ease,box-shadow 180ms ease;
         }
 
-        .newsletter-form label:hover,
-        .newsletter-form label:focus-within { border-color: #218cff; outline: none; }
-        .newsletter-form label svg { width: 21px; height: 21px; flex: none; color: #626262; stroke-width: 1.5; }
-        .newsletter-form input { width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; color: #222; font: inherit; }
-        .newsletter-form input::placeholder { color: #999; opacity: 1; }
+        .newsletter-input-wrapper:hover {
+          border-color: #c4b8e8;
+        }
 
-        .newsletter-form button {
-          display: flex;
-          width: 178px;
-          height: 57px;
-          align-items: center;
-          justify-content: center;
-          gap: 10px;
+        .newsletter-input-wrapper:focus-within {
+          border-color: #7553c8;
+          box-shadow: 0 0 0 3px rgba(117,83,200,.18),0 4px 20px rgba(0,0,0,.03);
+        }
+
+        .newsletter-mail-icon {
+          width: 20px;
+          height: 20px;
+          margin-right: 12px;
+          flex: none;
+          color: #6b7280;
+          stroke-width: 1.6;
+        }
+
+        .newsletter-input-wrapper input {
+          flex: 1;
+          min-width: 0;
+          height: 100%;
           border: 0;
-          border-radius: 7px;
-          background: linear-gradient(110deg, #5c3ba6, #7553c8);
-          color: #fff;
+          outline: 0;
+          background: transparent;
+          color: #171717;
+          font-family: inherit;
           font-size: 15px;
-          font-weight: 700;
-          cursor: pointer;
         }
 
-        .newsletter-form button:hover { filter: none; }
-        .newsletter-form button:focus-visible { outline: 2px solid #5c3ba6; outline-offset: 3px; }
-        .newsletter-form button svg { width: 22px; height: 22px; stroke-width: 1.7; }
+        .newsletter-input-wrapper input::placeholder {
+          color: #9ca3af;
+          opacity: 1;
+        }
+
+        .newsletter-input-wrapper button {
+          display: flex;
+          height: 100%;
+          padding: 0 5px 0 18px;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          flex: none;
+          border: 0;
+          border-radius: 999px;
+          background: linear-gradient(135deg, #7553c8 0%, #5c3ba6 100%);
+          color: #fff;
+          font-size: 14px;
+          font-weight: 600;
+          box-shadow: 0 4px 14px rgba(117, 83, 200, 0.35);
+          cursor: pointer;
+          transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .newsletter-input-wrapper button:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 6px 18px rgba(117, 83, 200, 0.5);
+        }
+
+        .newsletter-input-wrapper button i {
+          display: grid;
+          width: 38px;
+          height: 38px;
+          place-items: center;
+          border-radius: 50%;
+          background: #fff;
+          color: #7553c8;
+          transition: transform 180ms ease;
+        }
+
+        .newsletter-input-wrapper button i svg {
+          width: 16px;
+          height: 16px;
+          stroke-width: 1.8;
+        }
+
+        .newsletter-input-wrapper button:hover i {
+          transform: translateX(2px);
+        }
+
+        .newsletter-input-wrapper button:focus-visible {
+          outline: 2px solid #7553c8;
+          outline-offset: 2px;
+        }
 
         @media (max-width: 600px) {
           .newsletter-section { margin-top: -48px; padding: 72px 18px 82px; }
@@ -142,8 +209,12 @@ export default function Newsletter() {
           .newsletter-copy br { display: none; }
           .newsletter-socials { max-width: 230px; margin-right: auto; margin-left: auto; gap: 12px; }
           .newsletter-socials a { width: 42px; height: 42px; }
-          .newsletter-form { display: grid; width: min(100%, 360px); margin-top: 38px; gap: 10px; }
-          .newsletter-form label, .newsletter-form button { width: 100%; }
+          .newsletter-form { width: 100%; margin-top: 38px; }
+          .newsletter-input-wrapper { height: 54px; padding: 4px 5px 4px 16px; }
+          .newsletter-mail-icon { width: 18px; height: 18px; margin-right: 8px; }
+          .newsletter-input-wrapper input { font-size: 14px; }
+          .newsletter-input-wrapper button { padding: 0 4px 0 14px; font-size: 13px; }
+          .newsletter-input-wrapper button i { width: 34px; height: 34px; }
         }
       `}</style>
     </section>

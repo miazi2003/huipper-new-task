@@ -20,20 +20,20 @@ export const servicesShowcase: ServiceShowcase[] = [
     titlePrefix: "UI/UX",
     titleItalic: "Design",
     description:
-      "UI/UX Design, App Design, Website Design, Dashboard Design, Wireframing & Prototyping, Interaction Design, and Product Design.",
+      "UI/UX Design, App Design, Website Design, Dashboard Design, Wireframing & Prototyping, Interaction Design, Product Design",
     href: "/services/ui-ux-design",
     projects: [
       {
         image: "/images/services-showcase/ui-ux-web-platform.webp",
-        alt: "Web platform interface presented on a laptop",
+        alt: "SaaS Analytics & Web Platform UI/UX Mockup",
         column: "left",
-        fallback: "linear-gradient(155deg, #a9dcff 0%, #74bdea 46%, #277cad 100%)",
+        fallback: "linear-gradient(155deg, #15102a 0%, #2e1a5a 50%, #0d081e 100%)",
       },
       {
         image: "/images/services-showcase/ui-ux-finance-app.webp",
-        alt: "Finance application interface presented on a phone",
+        alt: "Fintech Mobile App 3D Mockup",
         column: "right",
-        fallback: "linear-gradient(155deg, #d8ff91 0%, #aee84c 48%, #5f9b09 100%)",
+        fallback: "linear-gradient(155deg, #0d2b11 0%, #17541f 50%, #061708 100%)",
       },
     ],
   },
@@ -42,20 +42,20 @@ export const servicesShowcase: ServiceShowcase[] = [
     titlePrefix: "Web",
     titleItalic: "Development",
     description:
-      "Frontend Development, Backend Development, Full Stack Solutions, Mobile App Development, Custom Web Applications, API Integration.",
+      "Frontend Development, Backend Development, Full Stack Solutions, Mobile App Development, Custom Web Applications, API Integration",
     href: "/services/web-development",
     projects: [
       {
         image: "/images/services-showcase/web-dashboard.webp",
-        alt: "Analytics dashboard displayed on a tablet",
+        alt: "Cloud Developer Dashboard & Web Platform",
         column: "left",
-        fallback: "linear-gradient(155deg, #ff8e79 0%, #ff6749 47%, #bd2f09 100%)",
+        fallback: "linear-gradient(155deg, #2b110a 0%, #542214 50%, #140704 100%)",
       },
       {
         image: "/images/services-showcase/web-commerce.webp",
-        alt: "Commerce website displayed on a tablet",
+        alt: "Modern E-Commerce Web Application",
         column: "right",
-        fallback: "linear-gradient(155deg, #fff5b5 0%, #ffd452 52%, #ca8711 100%)",
+        fallback: "linear-gradient(155deg, #2b2308 0%, #574610 50%, #141003 100%)",
       },
     ],
   },
@@ -64,20 +64,20 @@ export const servicesShowcase: ServiceShowcase[] = [
     titlePrefix: "Logo &",
     titleItalic: "Branding",
     description:
-      "Logo Design, Visual Identity, Brand Strategy, Brand Guidelines, Marketing Collateral, and Packaging Design.",
+      "Logo Design, Visual Identity, Brand Strategy, Brand Guidelines, Marketing Collateral, Packaging Design",
     href: "/services/branding",
     projects: [
       {
         image: "/images/services-showcase/branding-identity.webp",
-        alt: "Colorful brand identity system",
+        alt: "Brand Identity & Stationery System",
         column: "left",
-        fallback: "linear-gradient(145deg, #896add 0%, #5c3ba6 48%, #211b4d 100%)",
+        fallback: "linear-gradient(145deg, #26164d 0%, #46298a 50%, #110924 100%)",
       },
       {
         image: "/images/services-showcase/branding-packaging.webp",
-        alt: "Branded product packaging collection",
+        alt: "Premium Product Packaging Mockup",
         column: "right",
-        fallback: "linear-gradient(145deg, #ff9dc7 0%, #f35495 48%, #9f1a54 100%)",
+        fallback: "linear-gradient(145deg, #421028 0%, #7d1f4d 50%, #1e0612 100%)",
       },
     ],
   },
@@ -86,20 +86,20 @@ export const servicesShowcase: ServiceShowcase[] = [
     titlePrefix: "Webflow &",
     titleItalic: "Framer",
     description:
-      "Webflow Development, Framer Development, Responsive Builds, CMS Architecture, Motion, and Launch Support.",
+      "Webflow Development, Framer Development, Responsive Builds, CMS Architecture, Motion & Animation, Launch Support",
     href: "/services/webflow-framer",
     projects: [
       {
         image: "/images/services-showcase/webflow-showcase.webp",
-        alt: "Webflow website experience",
+        alt: "Interactive 3D Webflow Website Experience",
         column: "left",
-        fallback: "linear-gradient(145deg, #58dfc2 0%, #0c9e83 50%, #075246 100%)",
+        fallback: "linear-gradient(145deg, #09332c 0%, #136658 50%, #041714 100%)",
       },
       {
         image: "/images/services-showcase/framer-showcase.webp",
-        alt: "Framer website experience",
+        alt: "Fluid Motion Framer Digital Experience",
         column: "right",
-        fallback: "linear-gradient(145deg, #7bb8ff 0%, #386be3 50%, #14296e 100%)",
+        fallback: "linear-gradient(145deg, #0d1e47 0%, #1a3c8c 50%, #060e21 100%)",
       },
     ],
   },

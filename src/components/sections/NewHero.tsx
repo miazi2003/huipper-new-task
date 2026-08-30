@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
-import { ArrowRight, Camera, CircleUser, Menu, Send } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ArrowRight, Camera, CircleUser, Menu, Send, X } from "lucide-react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 const navigation = ["About", "Solutions", "Advantages", "Partners", "Contacts"];
@@ -39,6 +39,18 @@ export default function NewHero() {
   const topPanelRef = useRef<HTMLDivElement>(null);
   const bottomPanelRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
@@ -209,12 +221,21 @@ export default function NewHero() {
               <span className="sr-only">Huipper</span>
             </Link>
 
-            <nav className="ac-nav-shell" aria-label="Hero navigation">
-              <div className="ac-nav-links">{navigation.map((item) => <Link href={`#${item}`} key={item}>{item}</Link>)}</div>
-              <button className="ac-mobile-menu" type="button" aria-label="Open navigation"><Menu /></button>
+            <nav className={`ac-nav-shell${menuOpen ? " ac-nav-open" : ""}`} aria-label="Hero navigation">
+              <div className="ac-nav-links" id="ac-mobile-navigation">{navigation.map((item) => <Link href={`#${item}`} key={item} onClick={() => setMenuOpen(false)}>{item}</Link>)}</div>
+              <button
+                className="ac-mobile-menu"
+                type="button"
+                aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+                aria-expanded={menuOpen}
+                aria-controls="ac-mobile-navigation"
+                onClick={() => setMenuOpen((open) => !open)}
+              >
+                {menuOpen ? <X /> : <Menu />}
+              </button>
             </nav>
 
-            <Link className="ac-start-button" href="#contact"><span>Get Started</span><i><ArrowRight /></i></Link>
+            <Link className="ac-start-button" href="#contact" aria-label="Get Started"><span>Get Started</span><i><ArrowRight /></i></Link>
             <ParticleSphere />
 
             <div className="ac-hero-copy">
@@ -377,9 +398,14 @@ export default function NewHero() {
           .ac-brand{top:14px;left:14px;width:136px;height:34px}
           .ac-nav-shell{width:78px;height:62px}
           .ac-nav-links{display:none}
-          .ac-mobile-menu{display:grid;width:35px;height:35px;padding:0;place-items:center;border:0;border-radius:50%;background:#eee9fa;color:#3b2c78}
+          .ac-nav-shell.ac-nav-open .ac-nav-links{position:absolute;top:72px;left:50%;display:flex;width:min(320px,calc(100vw - 32px));padding:14px;align-items:stretch;flex-direction:column;gap:4px;border:1px solid rgba(117,83,200,.18);border-radius:18px;background:rgba(255,255,255,.96);box-shadow:0 18px 48px rgba(33,27,77,.24);transform:translateX(-50%);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+          .ac-nav-shell.ac-nav-open .ac-nav-links a{display:flex;min-height:45px;padding:0 15px;align-items:center;border-radius:11px;color:#2d2458;font-size:15px;font-weight:600;transition:background 160ms ease,color 160ms ease}
+          .ac-nav-shell.ac-nav-open .ac-nav-links a:hover,.ac-nav-shell.ac-nav-open .ac-nav-links a:focus-visible{background:#eee9fa;color:#6845b8}
+          .ac-mobile-menu{position:relative;z-index:2;display:grid;width:35px;height:35px;padding:0;place-items:center;border:0;border-radius:50%;background:#eee9fa;color:#3b2c78;cursor:pointer}
           .ac-mobile-menu svg{width:16px;height:16px}
-          .ac-start-button{top:14px;right:14px;width:140px;height:38px;font-size:12px}
+          .ac-start-button{top:14px;right:14px;width:38px;height:38px;padding:3px;justify-content:center}
+          .ac-start-button>span{display:none}
+          .ac-start-button i{width:32px;height:32px}
           .ac-particle-sphere{top:125px;right:-145px;width:430px;height:430px}
           .ac-hero-copy{top:190px;width:calc(100% - 34px)}
           .ac-hero-copy h1{font-size:clamp(32px,9.5vw,42px);letter-spacing:-1.3px}
@@ -391,6 +417,22 @@ export default function NewHero() {
           .ac-contact-card{width:100%;height:160px;padding:26px 28px;border-right:0;border-radius:22px 22px 0 0}
           .ac-contact-card::after{display:none}
           .split-logo-img{width:clamp(100px, 28vw, 130px)}
+        }
+        @media (max-width:400px) {
+          .ac-hero-stage{padding:10px}
+          .ac-brand{top:13px;left:13px;width:38px;height:38px;background-image:url("/images/brand/huipper-mark-clean.png");background-size:contain}
+          .ac-nav-shell{width:72px;height:59px}
+          .ac-mobile-menu{width:34px;height:34px}
+          .ac-start-button{top:13px;right:13px;width:36px;height:36px;padding:2px}
+          .ac-start-button i{width:32px;height:32px}
+          .ac-hero-copy{top:198px;width:calc(100% - 40px);padding:0 10px}
+          .ac-hero-copy h1{width:100%;font-size:clamp(24px,7.6vw,29px);line-height:1.08;letter-spacing:-.8px;white-space:normal}
+          .ac-hero-copy p{max-width:290px;margin-top:20px;padding:0 8px;font-size:11px;line-height:1.55}
+          .ac-hero-button{margin-top:26px}
+          .ac-stats{right:4%;width:92%}
+          .ac-stats strong{font-size:25px}
+          .ac-contact-card{padding-right:20px;padding-left:20px}
+          .ac-email{max-width:100%;font-size:clamp(16px,5vw,19px);overflow-wrap:anywhere}
         }
         @media (prefers-reduced-motion:reduce) { .ac-particle-sphere{animation:none}.ac-hero-button i{transition:none} }
       `}</style>

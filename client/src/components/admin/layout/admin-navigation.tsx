@@ -39,7 +39,7 @@ const navigationItems: NavigationItem[] = [
   { label: "Leads", href: "/admin/leads", icon: Users },
   { label: "Media", href: "/admin/media", icon: ImageIcon },
   { label: "SEO", href: "/admin/seo", icon: SearchCheck },
-  { label: "Settings", href: "/admin/settings", icon: Settings },
+  { label: "Settings", href: "/admin/site-settings", icon: Settings },
 ];
 
 function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {

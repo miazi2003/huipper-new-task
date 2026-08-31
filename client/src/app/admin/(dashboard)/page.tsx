@@ -22,7 +22,7 @@ const quickActions = [
   { label: "Add Project", href: "/admin/projects/new", icon: Plus },
   { label: "Add Testimonial", href: "/admin/testimonials/new", icon: MessageSquareQuote },
   { label: "View Leads", href: "/admin/leads", icon: Users },
-  { label: "Site Settings", href: "/admin/settings", icon: Settings },
+  { label: "Site Settings", href: "/admin/site-settings", icon: Settings },
 ];
 
 export default function AdminDashboardPage() {

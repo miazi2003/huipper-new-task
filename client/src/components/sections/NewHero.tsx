@@ -2,17 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { ArrowRight, Camera, CircleUser, Menu, Send, X } from "lucide-react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
+import { DEFAULT_SITE_SETTINGS, getPublicSiteSettings } from "@/lib/api/site-settings";
 
 const navigation = ["About", "Solutions", "Advantages", "Partners", "Contacts"];
-const stats = [
-  ["5+", "YEARS OF SUCCESSFUL", "DELIVERY"],
-  ["40+", "COMPLETED", "PROJECTS"],
-  ["10+", "YEARS OF EXPERT", "EXPERIENCE"],
-];
-
 function ParticleSphere() {
   const dots = Array.from({ length: 740 }, (_, index) => {
     const y = 1 - (index / 739) * 2;
@@ -40,6 +35,11 @@ export default function NewHero() {
   const bottomPanelRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [siteSettings, setSiteSettings] = useState(DEFAULT_SITE_SETTINGS);
+
+  useEffect(() => {
+    void getPublicSiteSettings().then(setSiteSettings).catch(() => undefined);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -239,14 +239,14 @@ export default function NewHero() {
             <ParticleSphere />
 
             <div className="ac-hero-copy">
-              <h1 id="ac-hero-heading">ACROPOLIS INTEGRO</h1>
-              <p>COMPREHENSIVE SERVICES DESIGNED TO IMPROVE<br />THE SECURITY, RELIABILITY, AND PERFORMANCE<br />OF YOUR IT INFRASTRUCTURE</p>
-              <Link className="ac-hero-button" href="#contact"><span>Learn more</span><i><ArrowRight /></i></Link>
+              <h1 id="ac-hero-heading">{siteSettings.hero.title}</h1>
+              <p>{siteSettings.hero.subtitle.split("\n").map((line, index) => <Fragment key={`${index}-${line}`}>{index > 0 && <br />}{line}</Fragment>)}</p>
+              <Link className="ac-hero-button" href={siteSettings.hero.ctaUrl || "#"}><span>{siteSettings.hero.ctaText}</span><i><ArrowRight /></i></Link>
             </div>
 
             <aside className="ac-contact-card" id="contact" aria-label="Contact details">
               <small>CONTACT US</small>
-              <a className="ac-email" href="mailto:huipper.business@gmail.com">huipper.business@gmail.com</a>
+              <a className="ac-email" href={`mailto:${siteSettings.hero.contactEmail}`}>{siteSettings.hero.contactEmail}</a>
               <div className="ac-socials">
                 <a href="#linkedin" aria-label="LinkedIn"><CircleUser /></a>
                 <a href="#telegram" aria-label="Telegram"><Send /></a>
@@ -255,7 +255,7 @@ export default function NewHero() {
             </aside>
 
             <div className="ac-stats" aria-label="Company statistics">
-              {stats.map(([value, first, second]) => <div key={value}><strong>{value}</strong><span>{first}<br />{second}</span></div>)}
+              {siteSettings.hero.stats.map((stat, statIndex) => <div key={statIndex}><strong>{stat.value}</strong><span>{stat.label.split("\n").map((line, lineIndex) => <Fragment key={`${lineIndex}-${line}`}>{lineIndex > 0 && <br />}{line}</Fragment>)}</span></div>)}
             </div>
           </div>
         </div>

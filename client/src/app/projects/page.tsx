@@ -45,7 +45,7 @@ export default async function ProjectsPage() {
 
   return (
     <>
-      <SiteNavbar />
+      <SiteNavbar variant="transparent-dark" />
 
       <main className="projects-page-main">
         {/* Hero Section */}

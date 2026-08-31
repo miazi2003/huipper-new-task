@@ -122,7 +122,7 @@ export default function SiteNavbar({ variant = "default" }: SiteNavbarProps) {
         }
 
         .site-navbar.is-dark-variant .nav-link {
-          color: rgba(255, 255, 255, 0.72);
+          color: #ffffff;
         }
 
         .site-navbar.is-dark-variant .nav-link:hover,

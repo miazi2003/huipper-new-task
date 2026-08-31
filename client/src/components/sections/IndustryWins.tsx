@@ -107,7 +107,7 @@ export default function IndustryWins() {
   }, [studies]);
 
   return (
-    <section className="iw-section" ref={rootRef} aria-labelledby="industry-wins-heading">
+    <section id="projects" className="iw-section" ref={rootRef} aria-labelledby="industry-wins-heading">
       <div className="iw-intro">
         <p>Huipper Impact</p>
         <h2 id="industry-wins-heading">Digital Products Built to Win<br /><em>Across Every Industry</em></h2>

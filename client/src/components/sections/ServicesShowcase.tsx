@@ -98,7 +98,7 @@ export default function ServicesShowcase() {
   }, [activateService]);
 
   return (
-    <section ref={sectionRef} className="services-section" aria-labelledby="services-heading">
+    <section id="services" ref={sectionRef} className="services-section" aria-labelledby="services-heading">
       <div className="services-shell">
         <header className="services-header">
           <p>What We Do</p>

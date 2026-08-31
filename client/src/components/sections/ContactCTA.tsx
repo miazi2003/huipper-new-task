@@ -31,7 +31,7 @@ export default function ContactCTA() {
   }
 
   return (
-    <section className="contact-section" aria-labelledby="contact-heading">
+    <section id="contact" className="contact-section" aria-labelledby="contact-heading">
       <div className="contact-card">
         <div className="contact-intro">
           <p className="contact-offer">Claim a $799 Consultation, on Us!</p>

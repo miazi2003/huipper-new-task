@@ -50,7 +50,7 @@ export default function TestimonialsMarquee() {
   const lowerTestimonials = items.length >= 6 ? [...items.slice(3), ...items.slice(0, 3)] : items;
 
   return (
-    <section className="testimonials-section" aria-labelledby="testimonials-heading">
+    <section id="testimonials" className="testimonials-section" aria-labelledby="testimonials-heading">
       <header className="testimonials-header">
         <p>Referral From People</p>
         <h2 id="testimonials-heading">Trusted by People<br /><em>Chosen By Brands</em></h2>

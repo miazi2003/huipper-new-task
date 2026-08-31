@@ -7,7 +7,13 @@ import { ArrowRight, Camera, CircleUser, Menu, Send, X } from "lucide-react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { DEFAULT_SITE_SETTINGS, getPublicSiteSettings } from "@/lib/api/site-settings";
 
-const navigation = ["About", "Solutions", "Advantages", "Partners", "Contacts"];
+const navigation = [
+  { label: "Home", href: "/" },
+  { label: "Projects", href: "#projects" },
+  { label: "Testimonials", href: "#testimonials" },
+  { label: "Services", href: "#services" },
+  { label: "Contact", href: "#contact" },
+];
 
 const DOTS = Array.from({ length: 740 }, (_, index) => {
   const y = 1 - (index / 739) * 2;
@@ -218,7 +224,7 @@ export default function NewHero() {
   }, []);
 
   return (
-    <section ref={wrapperRef} className="ac-hero-section split-hero" aria-labelledby="ac-hero-heading">
+    <section id="home" ref={wrapperRef} className="ac-hero-section split-hero" aria-labelledby="ac-hero-heading">
       <div className="ac-hero-stage">
         <div className="ac-page-wrapper">
           <div className="ac-hero-card">
@@ -227,7 +233,7 @@ export default function NewHero() {
             </Link>
 
             <nav className={`ac-nav-shell${menuOpen ? " ac-nav-open" : ""}`} aria-label="Hero navigation">
-              <div className="ac-nav-links" id="ac-mobile-navigation">{navigation.map((item) => <Link href={`#${item}`} key={item} onClick={() => setMenuOpen(false)}>{item}</Link>)}</div>
+              <div className="ac-nav-links" id="ac-mobile-navigation">{navigation.map((item) => <Link href={item.href} key={item.href} onClick={() => setMenuOpen(false)}>{item.label}</Link>)}</div>
               <button
                 className="ac-mobile-menu"
                 type="button"
@@ -249,7 +255,7 @@ export default function NewHero() {
               <Link className="ac-hero-button" href={siteSettings.hero.ctaUrl || "#"}><span>{siteSettings.hero.ctaText}</span><i><ArrowRight /></i></Link>
             </div>
 
-            <aside className="ac-contact-card" id="contact" aria-label="Contact details">
+            <aside className="ac-contact-card" aria-label="Contact details">
               <small>CONTACT US</small>
               <a className="ac-email" href={`mailto:${siteSettings.hero.contactEmail}`}>{siteSettings.hero.contactEmail}</a>
               <div className="ac-socials">

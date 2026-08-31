@@ -4,7 +4,6 @@ import styles from "@/components/admin/ui/dashboard.module.css";
 
 const plannedSections: Record<string, { title: string; description: string }> = {
   services: { title: "Services", description: "Service management is planned but is not connected in this foundation phase." },
-  testimonials: { title: "Testimonials", description: "Testimonial management will be added in a later implementation step." },
   process: { title: "Process", description: "Workflow step management is reserved for the future CMS." },
   impact: { title: "Impact", description: "Impact statistics will be managed here once the data layer is connected." },
   leads: { title: "Leads", description: "Contact lead management will be implemented after authentication and database setup." },

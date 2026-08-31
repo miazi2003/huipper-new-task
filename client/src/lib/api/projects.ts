@@ -57,8 +57,8 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   return body.data;
 }
 
-export function listAdminProjects(filters: { search?: string; status?: string; featured?: string; page?: number } = {}) {
-  const params = new URLSearchParams({ limit: "20", page: String(filters.page ?? 1) });
+export function listAdminProjects(filters: { search?: string; status?: string; featured?: string; page?: number; limit?: number } = {}) {
+  const params = new URLSearchParams({ limit: String(filters.limit ?? 20), page: String(filters.page ?? 1) });
   if (filters.search) params.set("search", filters.search);
   if (filters.status) params.set("status", filters.status);
   if (filters.featured) params.set("featured", filters.featured);

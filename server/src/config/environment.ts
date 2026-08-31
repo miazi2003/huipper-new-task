@@ -19,8 +19,20 @@ export function requireSessionSecret() {
   return value;
 }
 
+export function getTrustedOrigins(): string[] {
+  const raw = process.env.CLIENT_ORIGIN?.trim();
+  if (!raw) return ["http://localhost:3000"];
+  return raw.split(",").map((origin) => origin.trim().replace(/\/$/, "")).filter(Boolean);
+}
+
+export function isTrustedOrigin(origin: string | undefined): boolean {
+  if (!origin) return false;
+  const normalized = origin.trim().replace(/\/$/, "");
+  return getTrustedOrigins().includes(normalized);
+}
+
 export function getClientOrigin() {
-  return process.env.CLIENT_ORIGIN?.trim() || "http://localhost:3000";
+  return getTrustedOrigins()[0] ?? "http://localhost:3000";
 }
 
 export function getPort() {
@@ -29,5 +41,5 @@ export function getPort() {
 }
 
 export function getHost() {
-  return process.env.HOST?.trim() || "127.0.0.1";
+  return process.env.HOST?.trim() || (process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1");
 }

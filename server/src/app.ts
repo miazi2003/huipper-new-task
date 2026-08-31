@@ -1,6 +1,7 @@
 import cookieParser from "cookie-parser";
 import express from "express";
 import helmet from "helmet";
+import { isTrustedOrigin } from "./config/environment.js";
 import { adminAuthRouter } from "./routes/admin-auth.js";
 import { adminProjectRouter, publicProjectRouter } from "./modules/projects/project.routes.js";
 import { adminTestimonialRouter, publicTestimonialRouter } from "./modules/testimonials/testimonial.routes.js";
@@ -16,6 +17,22 @@ export function createApp() {
 
   app.disable("x-powered-by");
   app.use(helmet());
+  app.use((request, response, next) => {
+    const origin = request.get("origin");
+    if (origin && isTrustedOrigin(origin)) {
+      response.setHeader("Access-Control-Allow-Origin", origin);
+      response.setHeader("Access-Control-Allow-Credentials", "true");
+      response.setHeader("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS");
+      response.setHeader("Access-Control-Allow-Headers", "Content-Type,Authorization,Cookie");
+    }
+
+    if (request.method === "OPTIONS") {
+      response.status(204).end();
+      return;
+    }
+
+    next();
+  });
   app.use(express.json({ limit: "10kb" }));
   app.use(cookieParser());
   app.use((_request, response, next) => {

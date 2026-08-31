@@ -1,0 +1,42 @@
+import { config } from "dotenv";
+
+config({ path: [".env.local", ".env"], quiet: true });
+
+async function createAdmin() {
+  const [{ hashPassword }, { isValidEmail, normalizeEmail }, { getDb }] = await Promise.all([
+    import("../src/auth/password.js"),
+    import("../src/auth/validation.js"),
+    import("../src/db/client.js"),
+  ]);
+
+  const name = process.env.ADMIN_NAME?.trim() || "Huipper Admin";
+  const emailValue = process.env.ADMIN_EMAIL;
+  const password = process.env.ADMIN_PASSWORD;
+
+  if (!emailValue || !password) throw new Error("ADMIN_EMAIL and ADMIN_PASSWORD are required.");
+
+  const email = normalizeEmail(emailValue);
+  if (!isValidEmail(email)) throw new Error("ADMIN_EMAIL must be a valid email address.");
+  if (password.length < 8) throw new Error("ADMIN_PASSWORD must be at least 8 characters.");
+  if (password.length > 128) throw new Error("ADMIN_PASSWORD must not exceed 128 characters.");
+
+  const db = getDb();
+
+  try {
+    const existing = await db.admin.findUnique({ where: { email }, select: { id: true } });
+    if (existing) throw new Error("An admin with that email already exists. No changes were made.");
+
+    const admin = await db.admin.create({
+      data: { name, email, passwordHash: await hashPassword(password) },
+      select: { email: true, role: true },
+    });
+    console.info(`Admin created successfully for ${admin.email} with role ${admin.role}.`);
+  } finally {
+    await db.$disconnect();
+  }
+}
+
+createAdmin().catch((error: unknown) => {
+  console.error("Admin creation failed:", error instanceof Error ? error.message : "Unknown error");
+  process.exitCode = 1;
+});

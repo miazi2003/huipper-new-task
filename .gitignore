@@ -1,16 +1,18 @@
 # dependencies
-/node_modules
+**/node_modules
 
 # Next.js build output
-/.next
-/out
+**/.next
+**/out
 
 # production output
-/build
+**/build
+**/dist
 
 # local environment files (an example file may be committed)
-.env*
+**/.env*
 !.env.example
+!**/.env.example
 
 # logs and local tooling
 *.log
@@ -19,4 +21,4 @@
 next-env.d.ts
 
 # generated Prisma client
-/src/server/generated/prisma
+**/src/generated/prisma

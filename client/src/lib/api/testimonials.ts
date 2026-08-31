@@ -35,3 +35,14 @@ export const getAdminTestimonial = (id: string) => request<Testimonial>(`/api/ad
 export const createAdminTestimonial = (input: TestimonialInput) => request<Testimonial>("/api/admin/testimonials", { method: "POST", body: JSON.stringify(input) });
 export const updateAdminTestimonial = (id: string, input: TestimonialInput) => request<Testimonial>(`/api/admin/testimonials/${encodeURIComponent(id)}`, { method: "PATCH", body: JSON.stringify(input) });
 export const deleteAdminTestimonial = (id: string) => request<Testimonial>(`/api/admin/testimonials/${encodeURIComponent(id)}`, { method: "DELETE" });
+
+export function listPublicTestimonials(filters: { search?: string; type?: "text" | "video"; featured?: string; page?: number; limit?: number } = {}) {
+  const params = new URLSearchParams({ limit: String(filters.limit ?? 20), page: String(filters.page ?? 1) });
+  if (filters.search) params.set("search", filters.search);
+  if (filters.type) params.set("type", filters.type);
+  if (filters.featured) params.set("featured", filters.featured);
+  return request<TestimonialList>(`/api/testimonials?${params}`);
+}
+
+export const getPublicTestimonial = (id: string) => request<Testimonial>(`/api/testimonials/${encodeURIComponent(id)}`);
+

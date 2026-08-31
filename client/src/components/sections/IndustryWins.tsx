@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { caseStudies } from "@/data/caseStudies";
+import { adaptProjectsToCaseStudies } from "@/lib/adapters/project-presentation";
+import { listPublicProjects } from "@/lib/api/projects";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 const CARD_GAP = 80;
@@ -16,6 +18,17 @@ function ArrowIcon() {
 export default function IndustryWins() {
   const rootRef = useRef<HTMLElement>(null);
   const stackRef = useRef<HTMLDivElement>(null);
+  const [studies, setStudies] = useState(caseStudies);
+
+  useEffect(() => {
+    void listPublicProjects({ limit: 10 })
+      .then((data) => {
+        if (data?.projects && data.projects.length > 0) {
+          setStudies(adaptProjectsToCaseStudies(data.projects, caseStudies));
+        }
+      })
+      .catch(() => undefined);
+  }, []);
 
   useLayoutEffect(() => {
     const root = rootRef.current;
@@ -91,7 +104,7 @@ export default function IndustryWins() {
       media.revert();
       context.revert();
     };
-  }, []);
+  }, [studies]);
 
   return (
     <section className="iw-section" ref={rootRef} aria-labelledby="industry-wins-heading">
@@ -101,10 +114,10 @@ export default function IndustryWins() {
       </div>
 
       <div className="iw-stack" ref={stackRef}>
-        {caseStudies.map((study) => {
+        {studies.map((study, index) => {
           const initials = study.clientName.split(" ").map((part) => part[0]).join("").slice(0, 2);
           return (
-            <article className="iw-card" style={{ backgroundColor: study.backgroundColor }} key={study.category}>
+            <article className="iw-card" style={{ backgroundColor: study.backgroundColor }} key={`${study.category}-${study.title}-${index}`}>
               <div className="iw-copy">
                 <p className="iw-category">{study.category}</p>
                 <h3>{study.title}</h3>

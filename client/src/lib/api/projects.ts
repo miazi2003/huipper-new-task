@@ -69,3 +69,13 @@ export const getAdminProject = (id: string) => request<Project>(`/api/admin/proj
 export const createAdminProject = (input: ProjectInput) => request<Project>("/api/admin/projects", { method: "POST", body: JSON.stringify(input) });
 export const updateAdminProject = (id: string, input: ProjectInput) => request<Project>(`/api/admin/projects/${encodeURIComponent(id)}`, { method: "PATCH", body: JSON.stringify(input) });
 export const deleteAdminProject = (id: string) => request<Project>(`/api/admin/projects/${encodeURIComponent(id)}`, { method: "DELETE" });
+
+export function listPublicProjects(filters: { search?: string; featured?: string; page?: number; limit?: number } = {}) {
+  const params = new URLSearchParams({ limit: String(filters.limit ?? 20), page: String(filters.page ?? 1) });
+  if (filters.search) params.set("search", filters.search);
+  if (filters.featured) params.set("featured", filters.featured);
+  return request<ProjectList>(`/api/projects?${params}`);
+}
+
+export const getPublicProject = (slug: string) => request<Project>(`/api/projects/${encodeURIComponent(slug)}`);
+

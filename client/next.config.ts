@@ -18,6 +18,22 @@ const nextConfig: NextConfig = {
         source: "/api/contact",
         destination: `${serverApiUrl}/api/contact`,
       },
+      {
+        source: "/api/projects",
+        destination: `${serverApiUrl}/api/projects`,
+      },
+      {
+        source: "/api/projects/:path*",
+        destination: `${serverApiUrl}/api/projects/:path*`,
+      },
+      {
+        source: "/api/testimonials",
+        destination: `${serverApiUrl}/api/testimonials`,
+      },
+      {
+        source: "/api/testimonials/:path*",
+        destination: `${serverApiUrl}/api/testimonials/:path*`,
+      },
     ];
   },
 };

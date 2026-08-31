@@ -1,5 +1,9 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { useEffect, useState, type CSSProperties } from "react";
 import { testimonials, type Testimonial } from "@/data/testimonials";
+import { adaptCmsToTextTestimonials } from "@/lib/adapters/testimonial-presentation";
+import { listPublicTestimonials } from "@/lib/api/testimonials";
 
 function initials(name: string) {
   return name.split(" ").slice(0, 2).map((part) => part[0]).join("");
@@ -25,14 +29,26 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 function TestimonialSet({ items, duplicate = false }: { items: Testimonial[]; duplicate?: boolean }) {
   return (
     <div className="testimonial-set" aria-hidden={duplicate || undefined}>
-      {items.map((testimonial) => <TestimonialCard testimonial={testimonial} key={testimonial.name} />)}
+      {items.map((testimonial, index) => <TestimonialCard testimonial={testimonial} key={`${testimonial.name}-${index}`} />)}
     </div>
   );
 }
 
-const lowerTestimonials = [...testimonials.slice(3), ...testimonials.slice(0, 3)];
-
 export default function TestimonialsMarquee() {
+  const [items, setItems] = useState<Testimonial[]>(testimonials);
+
+  useEffect(() => {
+    void listPublicTestimonials({ type: "text", limit: 20 })
+      .then((data) => {
+        if (data?.testimonials && data.testimonials.length > 0) {
+          setItems(adaptCmsToTextTestimonials(data.testimonials, testimonials));
+        }
+      })
+      .catch(() => undefined);
+  }, []);
+
+  const lowerTestimonials = items.length >= 6 ? [...items.slice(3), ...items.slice(0, 3)] : items;
+
   return (
     <section className="testimonials-section" aria-labelledby="testimonials-heading">
       <header className="testimonials-header">
@@ -42,8 +58,8 @@ export default function TestimonialsMarquee() {
 
       <div className="testimonial-row testimonial-row-top">
         <div className="testimonial-track testimonial-track-rtl">
-          <TestimonialSet items={testimonials} />
-          <TestimonialSet items={testimonials} duplicate />
+          <TestimonialSet items={items} />
+          <TestimonialSet items={items} duplicate />
         </div>
       </div>
 
@@ -63,8 +79,8 @@ export default function TestimonialsMarquee() {
 
       <div className="testimonial-row testimonial-row-fourth">
         <div className="testimonial-track testimonial-track-ltr">
-          <TestimonialSet items={testimonials} />
-          <TestimonialSet items={testimonials} duplicate />
+          <TestimonialSet items={items} />
+          <TestimonialSet items={items} duplicate />
         </div>
       </div>
 

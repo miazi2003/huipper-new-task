@@ -3,22 +3,35 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FreeMode } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { videoTestimonials } from "@/data/videoTestimonials";
+import { videoTestimonials, type VideoTestimonial } from "@/data/videoTestimonials";
+import { adaptCmsToVideoTestimonials } from "@/lib/adapters/testimonial-presentation";
+import { listPublicTestimonials } from "@/lib/api/testimonials";
 import "swiper/css";
 import "swiper/css/free-mode";
 
-const carouselTestimonials = Array.from({ length: 3 }, (_, copy) =>
-  videoTestimonials.map((testimonial, sourceIndex) => ({
-    ...testimonial,
-    sourceIndex,
-    loopKey: `${copy}-${testimonial.id}`,
-  })),
-).flat();
-
 export default function ClientStories() {
+  const [videos, setVideos] = useState<VideoTestimonial[]>(videoTestimonials);
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const activeIndexRef = useRef<number | null>(null);
   const [playingIndex, setPlayingIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    void listPublicTestimonials({ type: "video", limit: 20 })
+      .then((data) => {
+        if (data?.testimonials && data.testimonials.length > 0) {
+          setVideos(adaptCmsToVideoTestimonials(data.testimonials, videoTestimonials));
+        }
+      })
+      .catch(() => undefined);
+  }, []);
+
+  const carouselTestimonials = Array.from({ length: 3 }, (_, copy) =>
+    videos.map((testimonial, sourceIndex) => ({
+      ...testimonial,
+      sourceIndex,
+      loopKey: `${copy}-${testimonial.id}-${sourceIndex}`,
+    })),
+  ).flat();
 
   const pauseActiveVideo = useCallback(() => {
     const activeIndex = activeIndexRef.current;
@@ -77,10 +90,10 @@ export default function ClientStories() {
         modules={[FreeMode]}
         slidesPerView="auto"
         centeredSlides
-        initialSlide={videoTestimonials.length + 2}
+        initialSlide={videos.length + 2}
         spaceBetween={24}
         loop
-        loopAdditionalSlides={videoTestimonials.length}
+        loopAdditionalSlides={videos.length}
         freeMode={{ enabled: true, momentum: true, momentumRatio: 0.75 }}
         grabCursor
         onSliderMove={pauseOnDrag}

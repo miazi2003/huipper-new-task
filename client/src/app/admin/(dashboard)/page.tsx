@@ -19,7 +19,7 @@ const stats = [
 ];
 
 const quickActions = [
-  { label: "Add Project", href: "/admin/projects", icon: Plus },
+  { label: "Add Project", href: "/admin/projects/new", icon: Plus },
   { label: "Add Testimonial", href: "/admin/testimonials", icon: MessageSquareQuote },
   { label: "View Leads", href: "/admin/leads", icon: Users },
   { label: "Site Settings", href: "/admin/settings", icon: Settings },

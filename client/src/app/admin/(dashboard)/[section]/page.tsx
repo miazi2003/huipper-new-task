@@ -3,7 +3,6 @@ import { Construction } from "lucide-react";
 import styles from "@/components/admin/ui/dashboard.module.css";
 
 const plannedSections: Record<string, { title: string; description: string }> = {
-  projects: { title: "Projects", description: "Project and case study management will be implemented in the next CMS phase." },
   services: { title: "Services", description: "Service management is planned but is not connected in this foundation phase." },
   testimonials: { title: "Testimonials", description: "Testimonial management will be added in a later implementation step." },
   process: { title: "Process", description: "Workflow step management is reserved for the future CMS." },

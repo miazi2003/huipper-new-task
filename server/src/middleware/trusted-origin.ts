@@ -5,7 +5,7 @@ export function requireTrustedOrigin(request: Request, response: Response, next:
   const origin = request.get("origin");
 
   if (origin && origin !== getClientOrigin()) {
-    response.status(403).json({ error: "Forbidden" });
+    response.status(403).json({ success: false, error: "Forbidden" });
     return;
   }
 

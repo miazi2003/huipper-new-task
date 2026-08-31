@@ -2,6 +2,7 @@ import cookieParser from "cookie-parser";
 import express from "express";
 import helmet from "helmet";
 import { adminAuthRouter } from "./routes/admin-auth.js";
+import { adminProjectRouter, publicProjectRouter } from "./modules/projects/project.routes.js";
 
 export function createApp() {
   const app = express();
@@ -23,19 +24,21 @@ export function createApp() {
     response.json({ status: "ok" });
   });
   app.use("/api/admin/auth", adminAuthRouter);
+  app.use("/api/admin/projects", adminProjectRouter);
+  app.use("/api/projects", publicProjectRouter);
 
   app.use((_request, response) => {
-    response.status(404).json({ error: "Not found" });
+    response.status(404).json({ success: false, error: "Not found" });
   });
 
   app.use((error: unknown, _request: express.Request, response: express.Response, _next: express.NextFunction) => {
     if (error instanceof SyntaxError) {
-      response.status(400).json({ error: "A valid JSON body is required" });
+      response.status(400).json({ success: false, error: "A valid JSON body is required" });
       return;
     }
 
     console.error("[server] Unhandled request error:", error instanceof Error ? error.message : "Unknown error");
-    response.status(500).json({ error: "Internal server error" });
+    response.status(500).json({ success: false, error: "Internal server error" });
   });
 
   return app;

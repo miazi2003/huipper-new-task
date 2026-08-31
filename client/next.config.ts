@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
         source: "/api/site-settings",
         destination: `${serverApiUrl}/api/site-settings`,
       },
+      {
+        source: "/api/contact",
+        destination: `${serverApiUrl}/api/contact`,
+      },
     ];
   },
 };

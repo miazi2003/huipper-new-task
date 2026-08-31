@@ -2,11 +2,33 @@
 
 import { useState } from "react";
 import { ArrowRight, Check, ChevronDown, Globe2, MessageCircle, UserRound } from "lucide-react";
+import { LeadApiError, submitContactForm } from "@/lib/api/leads";
 
 const budgetOptions = ["Less than $5K", "$5K - $10K", "$10K - $20K", "$20K - $50K", "More than $50K"];
 
 export default function ContactCTA() {
   const [budget, setBudget] = useState<string | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [feedback, setFeedback] = useState<{ type: "success" | "error"; message: string } | null>(null);
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget; const data = new FormData(form);
+    setSubmitting(true); setFeedback(null);
+    try {
+      const message = await submitContactForm({
+        name: String(data.get("fullName") ?? ""), email: String(data.get("email") ?? ""),
+        phone: String(data.get("whatsapp") ?? ""), subject: budget ?? "", message: String(data.get("details") ?? ""),
+        source: "website-contact",
+      });
+      form.reset(); setBudget(null); setFeedback({ type: "success", message });
+    } catch (submitError) {
+      const message = submitError instanceof LeadApiError && submitError.status === 429
+        ? "You’ve sent several messages. Please wait a little before trying again."
+        : submitError instanceof Error ? submitError.message : "Your message could not be sent. Please try again.";
+      setFeedback({ type: "error", message });
+    } finally { setSubmitting(false); }
+  }
 
   return (
     <section className="contact-section" aria-labelledby="contact-heading">
@@ -32,16 +54,16 @@ export default function ContactCTA() {
           </div>
         </div>
 
-        <form className="contact-form" onSubmit={(event) => event.preventDefault()}>
+        <form className="contact-form" onSubmit={(event) => void handleSubmit(event)}>
           <label className="contact-field contact-field-full">
             <span>Full Name</span>
-            <input type="text" name="fullName" placeholder="John Doe" autoComplete="name" />
+            <input type="text" name="fullName" placeholder="John Doe" autoComplete="name" maxLength={160} required />
           </label>
 
           <div className="contact-split">
             <label className="contact-field">
               <span>Your Email</span>
-              <input type="email" name="email" placeholder="yourmail@gmail.com" autoComplete="email" />
+              <input type="email" name="email" placeholder="yourmail@gmail.com" autoComplete="email" maxLength={320} required />
             </label>
 
             <label className="contact-field">
@@ -49,7 +71,7 @@ export default function ContactCTA() {
               <span className="contact-phone-input">
                 <Globe2 aria-hidden="true" />
                 <ChevronDown aria-hidden="true" />
-                <input type="tel" name="whatsapp" placeholder="123 456 7890" autoComplete="tel" />
+                <input type="tel" name="whatsapp" placeholder="123 456 7890" autoComplete="tel" maxLength={50} />
               </span>
             </label>
           </div>
@@ -73,13 +95,14 @@ export default function ContactCTA() {
 
           <label className="contact-field contact-details">
             <span>Project Details</span>
-            <textarea name="details" placeholder="I want to redesign my website.." />
+            <textarea name="details" placeholder="I want to redesign my website.." maxLength={10000} required />
           </label>
 
-          <button className="contact-submit" type="submit">
-            <span>Let&apos;s Connect</span>
+          <button className="contact-submit" disabled={submitting} type="submit">
+            <span>{submitting ? "Sending…" : "Let&apos;s Connect"}</span>
             <i><ArrowRight aria-hidden="true" /></i>
           </button>
+          <p aria-live="polite" className={`contact-feedback${feedback ? ` contact-feedback-${feedback.type}` : ""}`}>{feedback?.message}</p>
         </form>
       </div>
 
@@ -251,6 +274,10 @@ export default function ContactCTA() {
           transform: translateX(2px);
         }
         .contact-submit:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+        .contact-submit:disabled { cursor: wait; opacity: .72; transform: none; }
+        .contact-feedback { min-height: 20px; margin: 13px 0 0; font-size: 13px; line-height: 1.45; }
+        .contact-feedback-success { color: #6ee7a8; }
+        .contact-feedback-error { color: #ff9baa; }
 
         @media (max-width: 1050px) and (min-width: 761px) {
           .contact-card { padding: 48px; gap: 44px; }

@@ -2,10 +2,17 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { usePathname } from "next/navigation";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 export default function SmoothScroll({ children }: Readonly<{ children: React.ReactNode }>) {
+  const pathname = usePathname();
+
   useEffect(() => {
+    if (pathname.startsWith("/admin")) {
+      return;
+    }
+
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     if (reducedMotion.matches) {
@@ -36,7 +43,7 @@ export default function SmoothScroll({ children }: Readonly<{ children: React.Re
       lenis.off("scroll", updateScrollTrigger);
       lenis.destroy();
     };
-  }, []);
+  }, [pathname]);
 
   return children;
 }

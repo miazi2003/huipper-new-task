@@ -2,6 +2,18 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "img.magnific.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.pixabay.com",
+      },
+    ],
+  },
   async rewrites() {
     const serverApiUrl = process.env.SERVER_API_URL ?? "http://127.0.0.1:4000";
 

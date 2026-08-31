@@ -8,23 +8,28 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { DEFAULT_SITE_SETTINGS, getPublicSiteSettings } from "@/lib/api/site-settings";
 
 const navigation = ["About", "Solutions", "Advantages", "Partners", "Contacts"];
-function ParticleSphere() {
-  const dots = Array.from({ length: 740 }, (_, index) => {
-    const y = 1 - (index / 739) * 2;
-    const radius = Math.sqrt(1 - y * y);
-    const angle = index * Math.PI * (3 - Math.sqrt(5));
-    const x = Math.cos(angle) * radius;
-    const z = Math.sin(angle) * radius;
-    return { cx: 250 + x * 219, cy: 250 + y * 219, r: .72 + ((z + 1) / 2) * .82, opacity: .14 + ((z + 1) / 2) * .5 };
-  });
 
+const DOTS = Array.from({ length: 740 }, (_, index) => {
+  const y = 1 - (index / 739) * 2;
+  const radius = Math.sqrt(1 - y * y);
+  const angle = index * Math.PI * (3 - Math.sqrt(5));
+  const x = Math.cos(angle) * radius;
+  const z = Math.sin(angle) * radius;
+  const cx = Math.round((250 + x * 219) * 1000) / 1000;
+  const cy = Math.round((250 + y * 219) * 1000) / 1000;
+  const r = Math.round((0.72 + ((z + 1) / 2) * 0.82) * 1000) / 1000;
+  const opacity = Math.round((0.14 + ((z + 1) / 2) * 0.5) * 1000) / 1000;
+  return { cx, cy, r, opacity };
+});
+
+function ParticleSphere() {
   return (
     <svg className="ac-particle-sphere" viewBox="0 0 500 500" aria-hidden="true">
       <defs>
         <radialGradient id="ac-sphere-fade"><stop offset="0" stopColor="white" stopOpacity=".95" /><stop offset=".72" stopColor="white" stopOpacity=".62" /><stop offset="1" stopColor="white" stopOpacity="0" /></radialGradient>
         <mask id="ac-sphere-mask"><circle cx="250" cy="250" r="245" fill="url(#ac-sphere-fade)" /></mask>
       </defs>
-      <g mask="url(#ac-sphere-mask)">{dots.map((dot, index) => <circle key={index} cx={dot.cx} cy={dot.cy} r={dot.r} fill="white" opacity={dot.opacity} />)}</g>
+      <g mask="url(#ac-sphere-mask)">{DOTS.map((dot, index) => <circle key={index} cx={dot.cx} cy={dot.cy} r={dot.r} fill="white" opacity={dot.opacity} />)}</g>
     </svg>
   );
 }

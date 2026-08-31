@@ -1,4 +1,5 @@
 export type CaseStudy = {
+  slug?: string;
   category: string;
   title: string;
   description: string;

@@ -126,11 +126,23 @@ export default function IndustryWins() {
                   <div><span>{study.metricOneLabel}</span><strong>{study.metricOneValue}</strong></div>
                   <div><span>{study.metricTwoLabel}</span><strong>{study.metricTwoValue}</strong></div>
                 </div>
-                <div className="iw-client">
-                  <span className="iw-avatar" aria-hidden="true">{initials}</span>
-                  <span className="iw-client-copy"><strong>{study.clientName}</strong><small>{study.clientRole}</small></span>
-                  <ArrowIcon />
-                </div>
+                {study.slug ? (
+                  <Link
+                    href={`/projects/${study.slug}`}
+                    className="iw-client"
+                    aria-label={`View ${study.title} project details`}
+                  >
+                    <span className="iw-avatar" aria-hidden="true">{initials}</span>
+                    <span className="iw-client-copy"><strong>{study.clientName}</strong><small>{study.clientRole}</small></span>
+                    <ArrowIcon />
+                  </Link>
+                ) : (
+                  <div className="iw-client">
+                    <span className="iw-avatar" aria-hidden="true">{initials}</span>
+                    <span className="iw-client-copy"><strong>{study.clientName}</strong><small>{study.clientRole}</small></span>
+                    <ArrowIcon />
+                  </div>
+                )}
               </div>
               <div className="iw-project-image">
                 <Image src={study.projectImage} alt={`${study.title} project`} fill sizes="(max-width: 900px) 100vw, 46vw" />
@@ -260,6 +272,8 @@ export default function IndustryWins() {
           align-items: center;
           border-radius: 8px;
           background: #fff;
+          text-decoration: none;
+          color: inherit;
         }
 
         .iw-avatar {

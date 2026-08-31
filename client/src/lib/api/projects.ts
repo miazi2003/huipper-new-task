@@ -43,10 +43,18 @@ export class ProjectApiError extends Error {
   }
 }
 
+function resolveApiUrl(path: string): string {
+  if (path.startsWith("http://") || path.startsWith("https://")) return path;
+  if (typeof window !== "undefined") return path;
+  const serverApiUrl = process.env.SERVER_API_URL ?? "http://127.0.0.1:4000";
+  return `${serverApiUrl}${path}`;
+}
+
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const response = await fetch(path, {
+  const url = resolveApiUrl(path);
+  const response = await fetch(url, {
     ...init,
-    credentials: "same-origin",
+    credentials: typeof window !== "undefined" ? "same-origin" : undefined,
     headers: { "Content-Type": "application/json", ...init?.headers },
   });
   const body = (await response.json().catch(() => ({ success: false, error: "Invalid server response" }))) as ApiSuccess<T> | ApiFailure;

@@ -41,6 +41,7 @@ export function adaptProjectToCaseStudy(
     project.coverImageUrl?.trim() || project.thumbnailUrl?.trim() || fallback?.projectImage || "/images/hero/affine.png";
 
   return {
+    slug: project.slug?.trim() || fallback?.slug || "",
     category,
     title,
     description,

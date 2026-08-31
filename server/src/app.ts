@@ -1,6 +1,6 @@
 import cookieParser from "cookie-parser";
 import express from "express";
-import helmet from "helmet";
+import * as helmetModule from "helmet";
 import { isTrustedOrigin } from "./config/environment.js";
 import { adminAuthRouter } from "./routes/admin-auth.js";
 import { adminProjectRouter, publicProjectRouter } from "./modules/projects/project.routes.js";
@@ -16,7 +16,7 @@ export function createApp() {
   }
 
   app.disable("x-powered-by");
-  app.use(helmet());
+  app.use(helmetModule.default());
   app.use((request, response, next) => {
     const origin = request.get("origin");
     if (origin && isTrustedOrigin(origin)) {

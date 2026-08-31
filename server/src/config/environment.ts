@@ -5,9 +5,9 @@ export class ConfigurationError extends Error {
   }
 }
 
-export function requireDatabaseUrl() {
-  const value = process.env.DATABASE_URL?.trim();
-  if (!value) throw new ConfigurationError("DATABASE_URL");
+export function requireMongoDbUri() {
+  const value = process.env.MONGODB_URI?.trim();
+  if (!value) throw new ConfigurationError("MONGODB_URI");
   return value;
 }
 

@@ -8,7 +8,7 @@ export type SafeAdmin = {
   id: string;
   name: string;
   email: string;
-  role: "ADMIN";
+  role: "admin";
 };
 
 export async function getCurrentAdmin(): Promise<SafeAdmin | null> {

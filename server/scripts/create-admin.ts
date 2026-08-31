@@ -3,10 +3,11 @@ import { config } from "dotenv";
 config({ path: [".env.local", ".env"], quiet: true });
 
 async function createAdmin() {
-  const [{ hashPassword }, { isValidEmail, normalizeEmail }, { getDb }] = await Promise.all([
+  const [{ hashPassword }, { isValidEmail, normalizeEmail }, { connectToDatabase, disconnectFromDatabase }, { AdminModel }] = await Promise.all([
     import("../src/auth/password.js"),
     import("../src/auth/validation.js"),
-    import("../src/db/client.js"),
+    import("../src/lib/db.js"),
+    import("../src/modules/auth/admin.model.js"),
   ]);
 
   const name = process.env.ADMIN_NAME?.trim() || "Huipper Admin";
@@ -20,19 +21,22 @@ async function createAdmin() {
   if (password.length < 8) throw new Error("ADMIN_PASSWORD must be at least 8 characters.");
   if (password.length > 128) throw new Error("ADMIN_PASSWORD must not exceed 128 characters.");
 
-  const db = getDb();
-
   try {
-    const existing = await db.admin.findUnique({ where: { email }, select: { id: true } });
-    if (existing) throw new Error("An admin with that email already exists. No changes were made.");
+    await connectToDatabase();
+    const existing = await AdminModel.exists({ email });
+    if (existing) {
+      console.info(`Admin already exists for ${email}. No changes were made.`);
+      return;
+    }
 
-    const admin = await db.admin.create({
-      data: { name, email, passwordHash: await hashPassword(password) },
-      select: { email: true, role: true },
+    const admin = await AdminModel.create({
+      name,
+      email,
+      passwordHash: await hashPassword(password),
     });
     console.info(`Admin created successfully for ${admin.email} with role ${admin.role}.`);
   } finally {
-    await db.$disconnect();
+    await disconnectFromDatabase();
   }
 }
 

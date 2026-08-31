@@ -4,9 +4,10 @@ import { verifyPassword } from "../auth/password.js";
 import { clearAdminSession, setAdminSession } from "../auth/session.js";
 import { isValidEmail, isValidLoginPassword, normalizeEmail } from "../auth/validation.js";
 import { ConfigurationError } from "../config/environment.js";
-import { getDb } from "../db/client.js";
+import { connectToDatabase } from "../lib/db.js";
 import { clearLoginRateLimit, loginRateLimit } from "../middleware/login-rate-limit.js";
 import { requireTrustedOrigin } from "../middleware/trusted-origin.js";
+import { AdminModel } from "../modules/auth/admin.model.js";
 
 const INVALID_CREDENTIALS = "Invalid email or password";
 const DUMMY_PASSWORD_HASH = "$2b$12$OoDI.xvmyq7zFwDR7wuGjOD4QzCFOehSDzv803elxPTVkrGUn1Wna";
@@ -30,7 +31,8 @@ adminAuthRouter.post("/login", requireTrustedOrigin, loginRateLimit, async (requ
   }
 
   try {
-    const admin = await getDb().admin.findUnique({ where: { email } });
+    await connectToDatabase();
+    const admin = await AdminModel.findOne({ email }).select("+passwordHash").exec();
     const passwordMatches = await verifyPassword(password, admin?.passwordHash ?? DUMMY_PASSWORD_HASH);
 
     if (!admin || !passwordMatches) {
@@ -38,9 +40,10 @@ adminAuthRouter.post("/login", requireTrustedOrigin, loginRateLimit, async (requ
       return;
     }
 
-    await setAdminSession(response, admin.id);
+    const adminId = admin._id.toString();
+    await setAdminSession(response, adminId);
     clearLoginRateLimit(request);
-    response.json({ admin: { id: admin.id, name: admin.name, email: admin.email, role: admin.role } });
+    response.json({ admin: { id: adminId, name: admin.name, email: admin.email, role: admin.role } });
   } catch (error) {
     if (error instanceof ConfigurationError) {
       console.error("[admin-auth] Configuration incomplete:", error.message);

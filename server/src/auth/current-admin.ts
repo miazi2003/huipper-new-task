@@ -1,13 +1,22 @@
 import type { Request } from "express";
-import { getDb } from "../db/client.js";
+import mongoose from "mongoose";
+import { connectToDatabase } from "../lib/db.js";
+import { AdminModel } from "../modules/auth/admin.model.js";
 import { getAdminIdFromSession } from "./session.js";
 
 export async function getCurrentAdmin(request: Request) {
   const adminId = await getAdminIdFromSession(request);
-  if (!adminId) return null;
+  if (!adminId || !mongoose.isValidObjectId(adminId)) return null;
 
-  return getDb().admin.findUnique({
-    where: { id: adminId },
-    select: { id: true, name: true, email: true, role: true },
-  });
+  await connectToDatabase();
+  const admin = await AdminModel.findById(adminId).select("name email role").exec();
+
+  if (!admin) return null;
+
+  return {
+    id: admin._id.toString(),
+    name: admin.name,
+    email: admin.email,
+    role: admin.role,
+  };
 }

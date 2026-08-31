@@ -99,7 +99,7 @@ export default function ContactCTA() {
           </label>
 
           <button className="contact-submit" disabled={submitting} type="submit">
-            <span>{submitting ? "Sending…" : "Let&apos;s Connect"}</span>
+            <span>{submitting ? "Sending…" : "Lets Connect"}</span>
             <i><ArrowRight aria-hidden="true" /></i>
           </button>
           <p aria-live="polite" className={`contact-feedback${feedback ? ` contact-feedback-${feedback.type}` : ""}`}>{feedback?.message}</p>
